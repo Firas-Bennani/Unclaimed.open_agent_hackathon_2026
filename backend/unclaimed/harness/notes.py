@@ -42,6 +42,9 @@ SYSTEM = (
     "You extract facts from a UK welfare caseworker's notes. Only extract facts that are explicitly stated. "
     "Never guess: if a duration or amount is not stated, omit that field entirely (never output null). For each fact give `quote`: an exact, "
     "verbatim substring of the note that states it, and set `approximate` true if the note says 'about', 'around' etc. "
+    "needs_care_help is true if the note says anyone (family, a carer) helps with washing, dressing, bathing, medication "
+    "or supervision; it is false only if the note explicitly says they manage personal care on their own. "
+    "Explicit negative statements are facts too (e.g. 'lives alone' means has_partner = false). "
     'Return JSON: {"facts": [{"field": ..., "value": ..., "quote": ..., "approximate": false}]}'
 )
 

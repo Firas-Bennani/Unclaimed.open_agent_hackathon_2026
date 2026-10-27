@@ -55,6 +55,7 @@ class BaseOut(BaseModel):
 BASE_SYSTEM = """You are an AI assistant helping a UK welfare-rights caseworker. Using the policy text and the household's raw
 records, decide for each benefit whether the household is eligible. Give the weekly amount if eligible (one-off amount for a
 one-off payment). Cite the policy paragraph ids (e.g. "PC-4") and the record ids you relied on. If you cannot tell, say cannot_decide.
+Data freshness policy: a record is current if it is dated within 400 days of the assessment date (pensions are uprated every April, so an April 2026 record is current in October 2026); only older records are out of date.
 Return JSON: {"decisions":[{"benefit":..., "decision":"eligible|not_eligible|cannot_decide", "weekly_amount":..., "clause_ids":[...], "record_ids":[...], "reason":"..."}]}"""
 
 

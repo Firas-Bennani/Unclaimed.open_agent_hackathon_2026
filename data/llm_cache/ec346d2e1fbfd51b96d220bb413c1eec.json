@@ -1,0 +1,9 @@
+{
+ "content": "{\n  \"facts\": [\n    {\n      \"field\": \"needs_care_help\",\n      \"value\": false,\n      \"quote\": \"Agnes manages personal care independently and did not report any difficulties.\",\n      \"approximate\": false\n    },\n    {\n      \"field\": \"has_partner\",\n      \"value\": true,\n      \"quote\": \"Lives with partner Ann.\",\n      \"approximate\": false\n    },\n    {\n      \"field\": \"savings\",\n      \"value\": 4025,\n      \"quote\": \"Savings of about \u00a34,025 mentioned.\",\n      \"approximate\": true\n    }\n  ]\n}",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "prompt_tokens": 401,
+ "completion_tokens": 145,
+ "latency_s": 2.007,
+ "model": "nvidia/nemotron-3.5-lightning-30b-a3b"
+}

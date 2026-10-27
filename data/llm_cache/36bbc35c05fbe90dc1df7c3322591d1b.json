@@ -1,0 +1,9 @@
+{
+ "content": "{\n  \"facts\": [\n    {\n      \"field\": \"needs_care_help\",\n      \"value\": true,\n      \"quote\": \"Mabel needs help getting in and out of the bath and with dressing.\",\n      \"approximate\": false\n    },\n    {\n      \"field\": \"care_need_months\",\n      \"value\": null,\n      \"quote\": \"\",\n      \"approximate\": true\n    },\n    {\n      \"field\": \"care_day_and_night\",\n      \"value\": null,\n      \"quote\": \"\",\n      \"approximate\": true\n    },\n    {\n      \"field\": \"electricity_bill_in_name\",\n      \"value\": null,\n      \"quote\": \"\",\n      \"approximate\": true\n    },\n    {\n      \"field\": \"savings\",\n      \"value\": null,\n      \"quote\": \"\",\n      \"approximate\": true\n    },\n    {\n      \"field\": \"has_partner\",\n      \"value\": false,\n      \"quote\": \"Mabel lives alone.\",\n      \"approximate\": false\n    }\n  ]\n}",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "prompt_tokens": 333,
+ "completion_tokens": 232,
+ "latency_s": 2.928,
+ "model": "nvidia/nemotron-3.5-lightning-30b-a3b"
+}

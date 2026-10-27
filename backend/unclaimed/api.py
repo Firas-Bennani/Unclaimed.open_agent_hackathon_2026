@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import logging
 import threading
+from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Literal
 
 from fastapi import FastAPI, HTTPException
@@ -173,13 +174,16 @@ def set_demo_mode(body: DemoMode) -> dict:
 def _assess_all() -> None:
     hhs = pipeline.households()
     _bulk.update(running=True, done=0, total=len(hhs))
+    def one(h: dict) -> None:
+        try:
+            pipeline.assess(h["id"])
+        except Exception:
+            log.exception("assessment failed for %s", h["id"])
+        _bulk["done"] += 1
+
     try:
-        for h in hhs:
-            try:
-                pipeline.assess(h["id"])
-            except Exception:
-                log.exception("assessment failed for %s", h["id"])
-            _bulk["done"] += 1
+        with ThreadPoolExecutor(max_workers=max(1, settings.llm_concurrency)) as ex:
+            list(ex.map(one, hhs))
     finally:
         _bulk["running"] = False
 

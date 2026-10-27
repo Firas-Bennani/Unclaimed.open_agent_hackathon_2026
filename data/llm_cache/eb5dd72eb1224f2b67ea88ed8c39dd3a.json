@@ -1,0 +1,9 @@
+{
+ "content": "{\n  \"facts\": [\n    {\n      \"field\": \"needs_care_help\",\n      \"value\": true,\n      \"quote\": \"Geoffrey needs help getting in and out of the bath and with dressing.\",\n      \"approximate\": false\n    },\n    {\n      \"field\": \"has_partner\",\n      \"value\": false,\n      \"quote\": \"Geoffrey lives alone.\",\n      \"approximate\": false\n    }\n  ]\n}",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "prompt_tokens": 405,
+ "completion_tokens": 99,
+ "latency_s": 1.376,
+ "model": "nvidia/nemotron-3.5-lightning-30b-a3b"
+}
