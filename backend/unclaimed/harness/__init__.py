@@ -19,6 +19,6 @@ def get_harness() -> DataHarness:
 
     h = LocalFederatedHarness()
     if settings.data_backend == "zetaris":
-        # No verified Zetaris API access yet (see NEEDS_FIRAS.md): stay on the local federation, say so.
+        # No verified Zetaris API access yet (see docs/INTEGRATIONS.md): stay on the local federation, say so.
         h.status = "local federation (Zetaris requested but not configured)"
     return h

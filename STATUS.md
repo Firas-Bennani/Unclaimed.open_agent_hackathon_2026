@@ -13,7 +13,7 @@ _Last update: 2026-10-27 17:30 UTC · READY_
 ## Firas TODO (human-only)
 1. Record the video following `docs/DEMO_SCRIPT.md`. Start with `powershell -File scripts/demo.ps1`, then open http://localhost:8000.
 2. Paste `docs/SUBMISSION.md` into the hackathon form.
-3. Optional: Zetaris / Gaia credentials (see NEEDS_FIRAS.md). Both run on honest local fallbacks.
+3. Optional: Zetaris / Gaia credentials (see docs/INTEGRATIONS.md). Both run on honest local fallbacks.
 
 ## Known limitations
 - Zetaris and Meterless Gaia: interface + local fallback only (no credentials / public API).

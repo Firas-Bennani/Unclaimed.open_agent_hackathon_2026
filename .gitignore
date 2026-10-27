@@ -8,3 +8,4 @@ dist/
 .pytest_cache/
 frontend/test-results/
 docs/demo_server.log
+.claude/
