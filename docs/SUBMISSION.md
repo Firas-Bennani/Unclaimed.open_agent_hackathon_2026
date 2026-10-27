@@ -37,7 +37,7 @@ Python 3, FastAPI, pydantic, DuckDB, SQLAlchemy (SQLite/Postgres), NVIDIA Nemotr
 Real Zetaris and Gaia connectors, more schemes (Housing Benefit, Carer's Allowance, Scottish benefits), council-specific CTR schemes, PDF form filling, and a pilot with a welfare-rights charity on anonymised historic cases.
 
 ## Repo / run
-Repo: <REPO_URL>
+Repo: https://github.com/Firas-Bennani/Unclaimed.open_agent_hackathon_2026
 Run (offline demo): `python -m pip install -r backend/requirements.txt; cd frontend; npm install; cd ..; powershell -File scripts/demo.ps1` → http://localhost:8000
 
 All data is synthetic. Not legal advice. Rules are simplified from GOV.UK guidance.

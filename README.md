@@ -2,7 +2,8 @@
 
 <h1 align="center">Unclaimed</h1>
 <p align="center"><b>Find benefits. Prove decisions.</b><br>
-Open Agent Hackathon 2026 · Track 3: Reasoning Architecture · Team <b>One-Man Agent Show</b></p>
+Open Agent Hackathon 2026 · Track 3: Reasoning Architecture · Team <b>One-Man Agent Show</b><br>
+<a href="https://github.com/Firas-Bennani/Unclaimed.open_agent_hackathon_2026">https://github.com/Firas-Bennani/Unclaimed.open_agent_hackathon_2026</a></p>
 
 ---
 
