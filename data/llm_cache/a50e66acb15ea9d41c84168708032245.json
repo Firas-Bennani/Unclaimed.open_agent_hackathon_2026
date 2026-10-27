@@ -1,0 +1,7 @@
+{
+ "content": "",
+ "prompt_tokens": 336,
+ "completion_tokens": 1500,
+ "latency_s": 24.78,
+ "model": "nvidia/nemotron-3.5-lightning-30b-a3b"
+}

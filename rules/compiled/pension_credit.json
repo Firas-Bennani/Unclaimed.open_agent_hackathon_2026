@@ -1,0 +1,212 @@
+{
+  "id": "pension_credit",
+  "benefit": "pension_credit",
+  "name": "Pension Credit (Guarantee Credit)",
+  "version": "2026-27",
+  "jurisdiction": [
+    "England",
+    "Wales",
+    "Scotland"
+  ],
+  "sources": [
+    {
+      "url": "https://www.gov.uk/pension-credit/eligibility",
+      "title": "Pension Credit - Eligibility (GOV.UK)",
+      "retrieved": "2026-10-27"
+    },
+    {
+      "url": "https://www.gov.uk/pension-credit/what-youll-get",
+      "title": "Pension Credit - What you'll get (GOV.UK)",
+      "retrieved": "2026-10-27"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "PC-1",
+      "text": "Claimant must live in England, Scotland, or Wales and have reached State Pension age.",
+      "source_url": "https://www.gov.uk/pension-credit/eligibility"
+    },
+    {
+      "id": "PC-2",
+      "text": "Claimant must include partner; both partners must have reached State Pension age (simplified, Housing Benefit exception not modeled).",
+      "source_url": "https://www.gov.uk/pension-credit/eligibility"
+    },
+    {
+      "id": "PC-3",
+      "text": "Savings up to £10,000 ignored; above that, every £500 or part thereof counts as £1 weekly income.",
+      "source_url": "https://www.gov.uk/pension-credit/eligibility"
+    },
+    {
+      "id": "PC-4",
+      "text": "Guarantee Credit tops up weekly income to £238 (single) or £363.25 (couple); eligible if assessed income below threshold.",
+      "source_url": "https://www.gov.uk/pension-credit/what-youll-get"
+    },
+    {
+      "id": "PC-5",
+      "text": "Weekly Guarantee Credit amount is the difference between the threshold and assessed weekly income.",
+      "source_url": "https://www.gov.uk/pension-credit/what-youll-get"
+    }
+  ],
+  "derived": [
+    {
+      "name": "savings_income",
+      "expr": {
+        "if": {
+          "field": "savings",
+          "op": "<=",
+          "value": 10000,
+          "clause": "PC-3"
+        },
+        "then": {
+          "const": 0.0
+        },
+        "else": {
+          "op": "ceil",
+          "args": [
+            {
+              "op": "div",
+              "args": [
+                {
+                  "op": "sub",
+                  "args": [
+                    {
+                      "field": "savings"
+                    },
+                    {
+                      "const": 10000.0
+                    }
+                  ]
+                },
+                {
+                  "const": 500.0
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "clause": "PC-3"
+    },
+    {
+      "name": "assessed_weekly_income",
+      "expr": {
+        "op": "add",
+        "args": [
+          {
+            "field": "weekly_income_total"
+          },
+          {
+            "derived": "savings_income"
+          }
+        ]
+      },
+      "clause": "PC-4"
+    },
+    {
+      "name": "threshold",
+      "expr": {
+        "if": {
+          "field": "has_partner",
+          "op": "==",
+          "value": true,
+          "clause": "PC-4"
+        },
+        "then": {
+          "const": 363.25
+        },
+        "else": {
+          "const": 238.0
+        }
+      },
+      "clause": "PC-4"
+    }
+  ],
+  "eligibility": {
+    "all": [
+      {
+        "field": "country",
+        "op": "in",
+        "value": [
+          "England",
+          "Wales",
+          "Scotland"
+        ],
+        "clause": "PC-1"
+      },
+      {
+        "field": "age_years",
+        "op": ">=",
+        "value": {
+          "field": "state_pension_age"
+        },
+        "clause": "PC-1"
+      },
+      {
+        "any": [
+          {
+            "field": "has_partner",
+            "op": "==",
+            "value": false,
+            "clause": "PC-2"
+          },
+          {
+            "field": "partner_reached_spa",
+            "op": "==",
+            "value": true,
+            "clause": "PC-2"
+          }
+        ]
+      },
+      {
+        "field": "weekly_income_total",
+        "op": "<",
+        "value": {
+          "derived": "threshold"
+        },
+        "clause": "PC-4"
+      },
+      {
+        "derived": "assessed_weekly_income",
+        "op": "<",
+        "value": {
+          "derived": "threshold"
+        },
+        "clause": "PC-4"
+      }
+    ]
+  },
+  "amount": {
+    "expr": {
+      "op": "max",
+      "args": [
+        {
+          "const": 0.0
+        },
+        {
+          "op": "sub",
+          "args": [
+            {
+              "derived": "threshold"
+            },
+            {
+              "derived": "assessed_weekly_income"
+            }
+          ]
+        }
+      ]
+    },
+    "unit": "weekly",
+    "clause": "PC-5"
+  },
+  "questions": {
+    "country": "In which country do you live? (England, Wales, Scotland, or Northern Ireland)",
+    "age_years": "What is your age in whole years?",
+    "state_pension_age": "What is your State Pension age in years? (Usually 66 if born before 6 April 1960, otherwise 67)",
+    "has_partner": "Do you live with a partner?",
+    "partner_reached_spa": "Has your partner reached State Pension age?",
+    "weekly_income_total": "What is your total weekly income (including State Pension, private/occupational pensions, and other income) for you and your partner?",
+    "savings": "What is the total amount of savings and investments (capital) you and your partner have?"
+  },
+  "already_receiving_field": "receives_pension_credit",
+  "notes": "Simplified State Pension age: 66 for those born before 6 April 1960, 67 otherwise. The Housing Benefit exception for couples (PC-2) is not modeled. Savings income calculated as ceil((savings - 10000)/500) for savings over £10,000. Added early check on weekly_income_total vs threshold to decide FALSE when income alone exceeds threshold even if savings unknown."
+}

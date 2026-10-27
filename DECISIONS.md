@@ -4,3 +4,4 @@
 - 11:52 Docker daemon unavailable → no-Docker path is primary; DWP source uses SQLite locally, Postgres via compose (`DWP_DB_URL`).
 - 11:52 Zetaris/Meterless: no public API without human access → ship interfaces + local fallbacks, say so plainly in the README.
 - 13:05 Label/reference disagreement HH-046 (income £290, savings missing): I had labelled no escalations; reference says CTR must escalate (taper still leaves a reduction if capital ≤ £16k). Checked by hand: reference correct, label fixed.
+- 12:15 Demo learning loop: demo starts with Pension Credit pack on 2025-26 rates (£227.10/£346.60, labelled in UI); caseworker corrects HH-036 (£237.99/wk) → Nemotron patch → regression gate. Eval always uses the 2026-27 pack.

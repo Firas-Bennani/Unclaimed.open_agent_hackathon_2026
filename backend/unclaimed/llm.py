@@ -32,6 +32,7 @@ class LLMMeta:
     completion_tokens: int
     attempts: int
     source: str  # live | cache | stub
+    reasoning: str = ""  # the model's reasoning text, when it returns one
 
 
 _sem = threading.BoundedSemaphore(max(1, settings.llm_concurrency))
@@ -47,8 +48,11 @@ def _get_client():
     return _client
 
 
-def _key(model: str, messages: list[dict], temperature: float) -> str:
-    blob = json.dumps({"m": model, "msg": messages, "t": temperature}, sort_keys=True)
+def _key(model: str, messages: list[dict], temperature: float, thinking: bool = True) -> str:
+    payload = {"m": model, "msg": messages, "t": temperature}
+    if not thinking:
+        payload["think"] = False
+    blob = json.dumps(payload, sort_keys=True)
     return hashlib.sha256(blob.encode()).hexdigest()[:32]
 
 
@@ -68,7 +72,7 @@ def _cache_put(key: str, record: dict) -> None:
     _cache_path(key).write_text(json.dumps(record, indent=1), encoding="utf-8")
 
 
-def _raw_call(model: str, messages: list[dict], temperature: float, max_tokens: int) -> dict:
+def _raw_call(model: str, messages: list[dict], temperature: float, max_tokens: int, thinking: bool = True) -> dict:
     """One live call with exponential backoff on 429/5xx/timeouts."""
     if not settings.nvidia_api_key:
         raise LLMUnavailable("NVIDIA_API_KEY not set")
@@ -78,12 +82,17 @@ def _raw_call(model: str, messages: list[dict], temperature: float, max_tokens: 
         try:
             with _sem:
                 t0 = time.time()
+                extra = {} if thinking else {"extra_body": {"chat_template_kwargs": {"enable_thinking": False}}}
                 r = _get_client().chat.completions.create(
-                    model=model, messages=messages, temperature=temperature, max_tokens=max_tokens
+                    model=model, messages=messages, temperature=temperature, max_tokens=max_tokens, **extra
                 )
             u = r.usage
+            msg = r.choices[0].message
+            extra_fields = msg.model_extra or {}
             return {
-                "content": r.choices[0].message.content or "",
+                "content": msg.content or "",
+                "reasoning": extra_fields.get("reasoning_content") or extra_fields.get("reasoning") or "",
+                "finish_reason": r.choices[0].finish_reason,
                 "prompt_tokens": getattr(u, "prompt_tokens", 0) or 0,
                 "completion_tokens": getattr(u, "completion_tokens", 0) or 0,
                 "latency_s": round(time.time() - t0, 3),
@@ -102,18 +111,21 @@ def _raw_call(model: str, messages: list[dict], temperature: float, max_tokens: 
     raise LLMUnavailable(f"retries exhausted: {last}")
 
 
-def complete(model: str, messages: list[dict], temperature: float = 0.0, max_tokens: int = 4096) -> tuple[str, LLMMeta]:
-    key = _key(model, messages, temperature)
+def complete(model: str, messages: list[dict], temperature: float = 0.0, max_tokens: int = 4096,
+             thinking: bool = True) -> tuple[str, LLMMeta]:
+    key = _key(model, messages, temperature, thinking)
     cached = _cache_get(key)
     if cached is not None:
         # latency reported is the one measured on the original live call
-        return cached["content"], LLMMeta(model, True, cached.get("latency_s", 0.0), cached["prompt_tokens"], cached["completion_tokens"], 1, "cache")
+        return cached["content"], LLMMeta(model, True, cached.get("latency_s", 0.0), cached["prompt_tokens"],
+                                          cached["completion_tokens"], 1, "cache", cached.get("reasoning", ""))
     if settings.llm_mode != "live":
         raise LLMUnavailable(f"no cache entry ({settings.llm_mode} mode)")
-    rec = _raw_call(model, messages, temperature, max_tokens)
+    rec = _raw_call(model, messages, temperature, max_tokens, thinking)
     rec["model"] = model
     _cache_put(key, rec)
-    return rec["content"], LLMMeta(model, False, rec["latency_s"], rec["prompt_tokens"], rec["completion_tokens"], 1, "live")
+    return rec["content"], LLMMeta(model, False, rec["latency_s"], rec["prompt_tokens"], rec["completion_tokens"], 1, "live",
+                                   rec.get("reasoning", ""))
 
 
 _FENCE = re.compile(r"```(?:json)?\s*(.*?)```", re.S)
@@ -139,6 +151,7 @@ def chat_json(
     validate: Callable[[T], list[str]] | None = None,
     max_repairs: int = 2,
     max_tokens: int = 4096,
+    thinking: bool = True,
 ) -> tuple[T, LLMMeta]:
     """Ask for JSON, validate against a pydantic schema (+ optional semantic
     checks), and run a repair loop of at most `max_repairs` retries."""
@@ -147,7 +160,7 @@ def chat_json(
     latency = 0.0
     all_cached = True
     for attempt in range(max_repairs + 1):
-        content, meta = complete(model, messages, max_tokens=max_tokens)
+        content, meta = complete(model, messages, max_tokens=max_tokens, thinking=thinking)
         total_p += meta.prompt_tokens
         total_c += meta.completion_tokens
         latency += meta.latency_s
@@ -156,7 +169,8 @@ def chat_json(
             obj = schema.model_validate(extract_json(content))
             errors = validate(obj) if validate else []
             if not errors:
-                return obj, LLMMeta(model, all_cached, latency, total_p, total_c, attempt + 1, "cache" if all_cached else "live")
+                return obj, LLMMeta(model, all_cached, latency, total_p, total_c, attempt + 1,
+                                    "cache" if all_cached else "live", meta.reasoning)
             problem = "; ".join(errors)
         except (ValueError, ValidationError) as e:
             problem = str(e)[:1500]

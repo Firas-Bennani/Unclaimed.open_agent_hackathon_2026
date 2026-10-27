@@ -44,12 +44,12 @@ def active_pack() -> dict[str, Rule]:
 
 
 def overrides_for(hid: str) -> list[Fact]:
+    # ids are positional (not random) so identical corrections replay identically from the LLM cache
     out = []
-    for c in get_memory().corrections(hid):
-        if c["kind"] != "fact":
-            continue
-        out.append(Fact(id=f"caseworker:{c['id']}:{c['target']}", field=c["target"], value=c["value"], source="caseworker",
-                        source_label="Caseworker correction", record_id=f"correction:{c['id']}",
+    fact_corrections = [c for c in get_memory().corrections(hid) if c["kind"] == "fact"]
+    for i, c in enumerate(fact_corrections, 1):
+        out.append(Fact(id=f"caseworker:{hid}:{i}:{c['target']}", field=c["target"], value=c["value"], source="caseworker",
+                        source_label="Caseworker correction", record_id=f"correction:{hid}#{i}",
                         as_of=datetime.fromisoformat(c["created_at"]).date(), extraction_method="caseworker",
                         note=c["note"] or None))
     return out

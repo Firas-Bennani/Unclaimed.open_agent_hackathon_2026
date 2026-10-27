@@ -106,7 +106,7 @@ def run_baseline(hh: dict, policy: str, clause_ids: dict[str, set[str]]) -> dict
     user = f"Assessment date: {settings.assessment_date}\n\n# Policy\n{policy}\n\n# Household records\n{data}\n\nDecide: {', '.join(BENEFITS)}."
     t0 = time.time()
     try:
-        out, meta = llm.chat_json(settings.reasoning_model, BASE_SYSTEM, user, BaseOut, max_tokens=6000)
+        out, meta = llm.chat_json(settings.reasoning_model, BASE_SYSTEM, user, BaseOut, max_tokens=16000)
     except (llm.LLMUnavailable, ValueError) as e:
         return {"error": str(e)[:200]}
     res = {}
@@ -214,7 +214,61 @@ def main() -> None:
         "rows": rows,
     }
     (ROOT / "eval" / "results.json").write_text(json.dumps(out, indent=1, default=str), encoding="utf-8")
+    write_eval_md(out)
     print(json.dumps(summary, indent=1))
+
+
+LABELS = {"unclaimed": "Unclaimed (both lanes + arbiter)", "baseline": "Standard agent (Nemotron, raw data + policy text)",
+          "deterministic": "Ablation: deterministic lane only"}
+ROWS = [("accuracy_decidable", "Accuracy on decidable cases", "pct"), ("wrong_yes", "Wrong \"yes\" (count)", "int"),
+        ("wrong_yes_rate", "Wrong \"yes\" rate", "pct"), ("wrong_no", "Wrong \"no\" (count)", "int"),
+        ("wrong_no_rate", "Wrong \"no\" rate", "pct"), ("escalations", "Escalations", "int"),
+        ("escalation_precision", "Escalation precision", "pct"), ("escalation_recall", "Escalation recall", "pct"),
+        ("amount_accuracy", "Amount within £0.50 (correct yes)", "pct"), ("citation_validity", "Citation validity", "pct"),
+        ("latency_s_mean", "Latency per household (s)", "num"), ("tokens_mean", "Tokens per household", "int")]
+
+
+def _f(v, kind):
+    if v is None:
+        return "—"
+    return f"{v * 100:.1f}%" if kind == "pct" else (f"{v:,.0f}" if kind == "int" else f"{v:,.1f}")
+
+
+def write_eval_md(out: dict) -> None:
+    systems = [s for s in ("baseline", "unclaimed", "deterministic") if out["summary"].get(s)]
+    any_s = out["summary"][systems[0]]
+    lines = ["# Evaluation", "",
+             f"_Generated {out['generated_at']} by `python eval/run.py` — every number below comes from `eval/results.json`._", "",
+             f"- **Households:** {out['n_households']} synthetic households × 4 benefits = {any_s['decisions']} decisions "
+             f"({any_s['decidable']} decidable from the available evidence, {any_s['decisions'] - any_s['decidable']} that should be escalated).",
+             f"- **Ground truth:** {out['ground_truth']}.",
+             f"- **Models:** reasoning `{out['models']['reasoning']}`, extraction `{out['models']['extraction']}`.",
+             "- **Baseline:** the same Nemotron model given the policy text and every raw record for the household (SQL rows, CSV row, "
+             "council account JSON, caseworker note), asked to decide each benefit. No DSL, no fact graph, no arbiter.",
+             "- **Latency** is per household: measured live call time (replayed from the cache on re-runs) plus local pipeline time.", "",
+             "| Metric | " + " | ".join(LABELS[s] for s in systems) + " |", "|---|" + "---|" * len(systems)]
+    for key, label, kind in ROWS:
+        lines.append(f"| {label} | " + " | ".join(_f(out["summary"][s].get(key), kind) for s in systems) + " |")
+    lines += ["", "## Definitions", "",
+              "- *Decidable*: the reference implementation reaches yes/no from the facts a careful human could establish. Escalating a decidable case counts as not correct.",
+              "- *Wrong \"yes\"*: system said eligible when the expected answer was not \"yes\" (no, or escalate). This is the error that creates overpayment debt.",
+              "- *Wrong \"no\"*: system said not eligible when the expected answer was not \"no\".",
+              "- *Escalation precision / recall*: against the expected escalations (missing, conflicting or stale evidence).",
+              "- *Citation validity*: share of decisions whose cited clauses (and, for the baseline, record ids) exist. For Unclaimed, a decision counts as valid only if it cites a clause and the reasoning lane's citations all exist.", ""]
+    errs = {k: v for k, v in out["errors"].items() if v}
+    if errs:
+        lines += ["## Errors", "", *[f"- {k}: {len(v)} household(s) failed: {', '.join(v)}" for k, v in errs.items()], ""]
+    mistakes = []
+    for r in out["rows"]:
+        for s in systems:
+            if "benefits" not in r.get(s, {}):
+                continue
+            for b, p in r[s]["benefits"].items():
+                e = r["expected"][b]["decision"]
+                if p["decision"] != e:
+                    mistakes.append(f"| {r['id']} | {r['scenario']} | {b} | {s} | {e} | {p['decision']} |")
+    lines += ["## Every disagreement with ground truth", "", "| Household | Scenario | Benefit | System | Expected | Got |", "|---|---|---|---|---|---|", *mistakes]
+    (ROOT / "EVAL.md").write_text(chr(10).join(lines) + chr(10), encoding="utf-8")
 
 
 if __name__ == "__main__":

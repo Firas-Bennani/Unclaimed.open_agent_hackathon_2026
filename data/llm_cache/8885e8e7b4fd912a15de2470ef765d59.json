@@ -1,0 +1,9 @@
+{
+ "content": "{\n  \"facts\": [\n    {\n      \"field\": \"needs_care_help\",\n      \"value\": true,\n      \"quote\": \"Her daughter comes round to help her wash and get dressed on bad days.\",\n      \"approximate\": false\n    },\n    {\n      \"field\": \"care_need_months\",\n      \"value\": null,\n      \"quote\": \"Maria did not say how long she has needed this help and there is no care assessment on file.\",\n      \"approximate\": false\n    },\n    {\n      \"field\": \"care_day_and_night\",\n      \"value\": null,\n      \"quote\": \"\",\n      \"approximate\": false\n    },\n    {\n      \"field\": \"electricity_bill_in_name\",\n      \"value\": false,\n      \"quote\": \"Electricity is included in her rent - the electricity bill is in the housing association's name, not hers.\",\n      \"approximate\": false\n    },\n    {\n      \"field\": \"savings\",\n      \"value\": 3000,\n      \"quote\": \"She has a small amount saved, about \u00a33,000, for her funeral.\",\n      \"approximate\": true\n    },\n    {\n      \"field\": \"has_partner\",\n      \"value\": false,\n      \"quote\": \"Maria lives alone in a one-bedroom housing association flat.\",\n      \"approximate\": false\n    }\n  ]\n}",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "prompt_tokens": 1182,
+ "completion_tokens": 304,
+ "latency_s": 5.721,
+ "model": "nvidia/nemotron-3.5-lightning-30b-a3b"
+}

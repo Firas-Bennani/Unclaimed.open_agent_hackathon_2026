@@ -22,37 +22,37 @@
   "clauses": [
     {
       "id": "AA-1",
-      "text": "Claimant must have reached State Pension age.",
+      "text": "Must have reached State Pension age.",
       "source_url": "https://www.gov.uk/attendance-allowance/eligibility"
     },
     {
       "id": "AA-2",
-      "text": "Claimant must have a physical or mental disability or health condition severe enough to need help with personal care or supervision for safety.",
+      "text": "Must have a physical or mental disability or health condition severe enough to need help with personal care or supervision.",
       "source_url": "https://www.gov.uk/attendance-allowance/eligibility"
     },
     {
       "id": "AA-3",
-      "text": "Claimant must have needed that help for at least 6 months.",
+      "text": "Must have needed that help for at least 6 months.",
       "source_url": "https://www.gov.uk/attendance-allowance/eligibility"
     },
     {
       "id": "AA-4",
-      "text": "Claimant must have been in Great Britain for at least 2 of the last 3 years.",
+      "text": "Must have been in Great Britain for at least 2 of the last 3 years.",
       "source_url": "https://www.gov.uk/attendance-allowance/eligibility"
     },
     {
       "id": "AA-5",
-      "text": "Claimant cannot get Attendance Allowance if already receiving Disability Living Allowance, Personal Independence Payment, or Adult Disability Payment.",
+      "text": "Cannot get Attendance Allowance if already receiving Disability Living Allowance, Personal Independence Payment, or Adult Disability Payment.",
       "source_url": "https://www.gov.uk/attendance-allowance/eligibility"
     },
     {
       "id": "AA-6",
-      "text": "Attendance Allowance is paid at £76.70 a week (lower rate) or £114.60 a week (higher rate); higher rate applies when help is needed both day and night.",
+      "text": "Paid at £76.70/week (lower rate) or £114.60/week (higher rate); higher rate when help needed both day and night.",
       "source_url": "https://www.gov.uk/attendance-allowance"
     },
     {
       "id": "AA-7",
-      "text": "Scheme covers England and Wales; people in Scotland apply for Pension Age Disability Payment instead.",
+      "text": "Scheme covers England and Wales; people in Scotland apply for Pension Age Disability Payment.",
       "source_url": "https://www.gov.uk/attendance-allowance"
     }
   ],
@@ -122,15 +122,14 @@
     "min_if_unknown": 76.7
   },
   "questions": {
-    "age_years": "What is your age in whole years?",
-    "state_pension_age": "What is your State Pension age?",
+    "age_years": "What is your date of birth? (used to calculate your age)",
+    "state_pension_age": "What is your date of birth? (used to determine your State Pension age)",
     "needs_care_help": "Do you need help with personal care or supervision because of a disability or health condition?",
-    "care_need_months": "For how many months have you needed that help?",
+    "care_need_months": "For how many months have you needed this help?",
     "in_gb_2_of_last_3_years": "Have you been in Great Britain for at least 2 of the last 3 years?",
     "receives_dla_or_pip": "Are you currently receiving Disability Living Allowance, Personal Independence Payment, or Adult Disability Payment?",
-    "country": "In which country do you live (England, Wales, Scotland, or Northern Ireland)?",
-    "care_day_and_night": "Do you need help both during the day and at night?"
+    "country": "In which country do you live? (England, Wales, Scotland, or Northern Ireland)"
   },
   "already_receiving_field": "receives_dla_or_pip",
-  "notes": "Attendance Allowance is for people over State Pension age who need help with personal care or supervision. It has two rates: lower (£76.70/week) if help needed either day or night, higher (£114.60/week) if help needed both day and night. Cannot be claimed if already receiving DLA, PIP, or Adult Disability Payment. Only available in England and Wales."
+  "notes": "Attendance Allowance is for people in England and Wales who have reached State Pension age and need care help. Higher rate paid if help needed both day and night."
 }

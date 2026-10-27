@@ -22,3 +22,12 @@ body {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+.draft h1 { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; }
+.draft h2, .draft h3 { font-weight: 700; margin: 0.75rem 0 0.25rem; }
+.draft p { margin: 0.4rem 0; }
+.draft table { width: 100%; border-collapse: collapse; margin: 0.5rem 0; font-size: 0.8rem; }
+.draft th, .draft td { border: 1px solid #e2e8f0; padding: 0.3rem 0.5rem; text-align: left; vertical-align: top; }
+.draft th { background: #f1f5f9; }
+.draft ul { list-style: disc; padding-left: 1.25rem; }
+.draft code { background: #f1f5f9; padding: 0 0.2rem; border-radius: 3px; font-size: 0.75rem; }

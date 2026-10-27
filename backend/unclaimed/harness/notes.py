@@ -29,9 +29,9 @@ NOTE_FIELDS = {
 
 class ExtractedFact(BaseModel):
     field: Literal["needs_care_help", "care_need_months", "care_day_and_night", "electricity_bill_in_name", "savings", "has_partner"]
-    value: Any
-    quote: str
-    approximate: bool = False
+    value: Any = None
+    quote: Optional[str] = None
+    approximate: Optional[bool] = False
 
 
 class Extraction(BaseModel):
@@ -40,7 +40,7 @@ class Extraction(BaseModel):
 
 SYSTEM = (
     "You extract facts from a UK welfare caseworker's notes. Only extract facts that are explicitly stated. "
-    "Never guess: if a duration or amount is not stated, omit that field. For each fact give `quote`: an exact, "
+    "Never guess: if a duration or amount is not stated, omit that field entirely (never output null). For each fact give `quote`: an exact, "
     "verbatim substring of the note that states it, and set `approximate` true if the note says 'about', 'around' etc. "
     'Return JSON: {"facts": [{"field": ..., "value": ..., "quote": ..., "approximate": false}]}'
 )
@@ -52,7 +52,7 @@ def _norm(s: str) -> str:
 
 def _validate(text: str):
     def check(ex: Extraction) -> list[str]:
-        bad = [f.quote for f in ex.facts if _norm(f.quote) not in _norm(text)]
+        bad = [f.quote for f in ex.facts if f.value is not None and f.quote and _norm(f.quote) not in _norm(text)]
         return [f"quote not found verbatim in note: {q!r}" for q in bad]
     return check
 
@@ -61,12 +61,14 @@ def extract_llm(text: str) -> tuple[list[ExtractedFact], dict]:
     fields = "\n".join(f"- {k}: {v}" for k, v in NOTE_FIELDS.items())
     user = f"Fields you may extract:\n{fields}\n\nNote:\n\"\"\"\n{text}\n\"\"\""
     try:
-        ex, meta = llm.chat_json(settings.extraction_model, SYSTEM, user, Extraction, validate=_validate(text), max_tokens=1500)
+        ex, meta = llm.chat_json(settings.extraction_model, SYSTEM, user, Extraction, validate=_validate(text),
+                                 max_tokens=2000, thinking=False)
     except ValueError as e:
         # still invalid after repairs: keep only the facts whose quotes verify
         log.warning("extraction repair failed: %s", e)
         return [], {"method": "llm_extraction", "error": str(e)[:200]}
-    return ex.facts, {"method": "llm_extraction", "model": meta.model, "cache_hit": meta.cache_hit,
+    facts = [f for f in ex.facts if f.value is not None and f.quote]
+    return facts, {"method": "llm_extraction", "model": meta.model, "cache_hit": meta.cache_hit,
                       "tokens": meta.prompt_tokens + meta.completion_tokens, "latency_s": meta.latency_s}
 
 

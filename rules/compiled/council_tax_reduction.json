@@ -22,7 +22,7 @@
   "clauses": [
     {
       "id": "CTR-1",
-      "text": "You could be eligible if you're on a low income or claim benefits. Your bill could be reduced by up to 100%. Each council runs its own scheme; this model covers pensioners in England and Wales.",
+      "text": "Council Tax Reduction is available to people on low income or claiming benefits, up to 100% reduction. Each council runs its own scheme; this model covers pensioners in England and Wales.",
       "source_url": "https://www.gov.uk/council-tax-reduction"
     },
     {
@@ -47,11 +47,26 @@
     },
     {
       "id": "CTR-6",
-      "text": "Otherwise, the weekly reduction is the weekly net council tax charge (annual net charge divided by 52), less 20% of any weekly income above the applicable amount. The applicable amount is the Pension Credit guarantee amount (£238 single, £363.25 couple). Income counted from savings follows the Pension Credit rule (£1 a week for every £500, or part of £500, over £10,000). The household is eligible if the weekly reduction is greater than zero.",
+      "text": "Otherwise, the weekly reduction is the weekly net council tax charge (annual net charge divided by 52), less 20% of any weekly income above the applicable amount. The applicable amount is the Pension Credit guarantee amount (£238 single, £363.25 couple). Income from savings follows the Pension Credit rule (£1 a week for every £500, or part of £500, over £10,000). The household is eligible if the weekly reduction is greater than zero.",
       "source_url": "https://www.legislation.gov.uk/uksi/2012/2885/contents"
     }
   ],
   "derived": [
+    {
+      "name": "weekly_net_council_tax",
+      "expr": {
+        "op": "div",
+        "args": [
+          {
+            "field": "council_tax_annual_net"
+          },
+          {
+            "const": 52.0
+          }
+        ]
+      },
+      "clause": "CTR-6"
+    },
     {
       "name": "applicable_amount",
       "expr": {
@@ -82,26 +97,34 @@
           "clause": "CTR-6"
         },
         "then": {
-          "op": "ceil",
+          "op": "mul",
           "args": [
             {
-              "op": "div",
+              "op": "ceil",
               "args": [
                 {
-                  "op": "sub",
+                  "op": "div",
                   "args": [
                     {
-                      "field": "savings"
+                      "op": "sub",
+                      "args": [
+                        {
+                          "field": "savings"
+                        },
+                        {
+                          "const": 10000.0
+                        }
+                      ]
                     },
                     {
-                      "const": 10000.0
+                      "const": 500.0
                     }
                   ]
-                },
-                {
-                  "const": 500.0
                 }
               ]
+            },
+            {
+              "const": 1.0
             }
           ]
         },
@@ -132,9 +155,6 @@
         "op": "max",
         "args": [
           {
-            "const": 0.0
-          },
-          {
             "op": "sub",
             "args": [
               {
@@ -144,21 +164,9 @@
                 "derived": "applicable_amount"
               }
             ]
-          }
-        ]
-      },
-      "clause": "CTR-6"
-    },
-    {
-      "name": "weekly_net_council_tax",
-      "expr": {
-        "op": "div",
-        "args": [
-          {
-            "field": "council_tax_annual_net"
           },
           {
-            "const": 52.0
+            "const": 0.0
           }
         ]
       },
@@ -266,14 +274,15 @@
   },
   "questions": {
     "country": "In which country do you live? (England, Wales, Scotland, or Northern Ireland)",
-    "date_of_birth": "What is your date of birth?",
+    "age_years": "What is your age in whole years on the assessment date?",
+    "state_pension_age": "What is your State Pension age in years?",
     "council_tax_liable": "Are you liable to pay council tax for the home you live in?",
-    "receives_pension_credit": "Do you currently receive Pension Credit (Guarantee Credit)?",
-    "savings": "What is the total amount of savings and investments (capital) you and your partner have, in pounds?",
-    "weekly_income_total": "What is your total weekly income from all sources (State Pension, private/occupational pensions, other income) for you and your partner, in pounds?",
-    "has_partner": "Do you live with a partner?",
-    "council_tax_annual_net": "What is your annual council tax charge after any single person discount, in pounds?"
+    "receives_pension_credit": "Are you currently receiving Pension Credit (Guarantee Credit)?",
+    "savings": "What is the total amount of savings and investments (capital) you and your partner have, in GBP?",
+    "weekly_income_total": "What is your total weekly income from all sources (State Pension, private/occupational pensions, other income) for you and your partner, in GBP?",
+    "council_tax_annual_net": "What is your annual council tax charge after any single person discount, in GBP?",
+    "has_partner": "Do you live with a partner?"
   },
   "already_receiving_field": "receives_pension_credit",
-  "notes": "Simplified national pensioner scheme model based on the Council Tax Reduction Schemes (Prescribed Requirements) (England) Regulations 2012 (SI 2012/2885). Each council in England and Wales operates its own scheme with possible variations. The applicable amounts (£238 single, £363.25 couple) and capital rules (£16,000 limit, £10,000 savings disregard, £1 per £500 taper) reflect the 2026-27 Pension Credit guarantee figures. The model assumes the claimant has reached State Pension age and is liable for council tax."
+  "notes": "This rule implements the national pensioner Council Tax Reduction scheme for England and Wales as per SI 2012/2885. Each local council may have its own scheme with different parameters; this is a simplified model. The Guarantee Credit of Pension Credit passports to 100% reduction. Capital limit is £16,000. Income taper is 20% of income above the applicable amount (Pension Credit guarantee levels). Savings income is calculated as £1 per week for every £500 or part of £500 over £10,000. The weekly reduction is the weekly net council tax charge minus the taper. Eligibility requires the reduction to be positive. The rule assumes the claimant has reached State Pension age and is liable for council tax."
 }

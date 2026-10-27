@@ -85,13 +85,13 @@ def run(pack: dict[str, Rule], facts: list[Fact], resolved: dict[str, ResolvedFa
     user = (f"Assessment date: {settings.assessment_date}\n\n# Rule clauses\n{_rules_block(pack)}\n\n# Facts\n{fblock}\n\n"
             f"Decide these benefits: {', '.join(pack)}.")
     try:
-        out, meta = llm.chat_json(settings.reasoning_model, SYSTEM, user, LaneOutput, max_tokens=6000)
+        out, meta = llm.chat_json(settings.reasoning_model, SYSTEM, user, LaneOutput, max_tokens=16000)
     except llm.LLMUnavailable as e:
         return {b: {"status": "unavailable", "error": str(e)} for b in pack}, {"source": "unavailable"}
     except ValueError as e:
         return {b: {"status": "invalid", "error": f"unparseable output: {e}"[:300]} for b in pack}, {"source": "error"}
     info = {"model": meta.model, "source": meta.source, "tokens": meta.prompt_tokens + meta.completion_tokens,
-            "latency_s": meta.latency_s, "attempts": meta.attempts}
+            "latency_s": meta.latency_s, "attempts": meta.attempts, "thinking": meta.reasoning[-4000:]}
     results: dict[str, dict] = {}
     for b, rule in pack.items():
         d = next((x for x in out.decisions if x.benefit == b), None)

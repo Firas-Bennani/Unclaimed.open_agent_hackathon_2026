@@ -1,0 +1,84 @@
+{
+  "id": "warm_home_discount",
+  "benefit": "warm_home_discount",
+  "name": "Warm Home Discount (England and Wales, 2026 to 2027)",
+  "version": "2026-27",
+  "jurisdiction": [
+    "England",
+    "Wales"
+  ],
+  "sources": [
+    {
+      "url": "https://www.gov.uk/the-warm-home-discount-scheme/if-you-live-in-england-and-wales",
+      "title": "Warm Home Discount - If you live in England and Wales (GOV.UK)",
+      "retrieved": "2026-10-27"
+    },
+    {
+      "url": "https://www.gov.uk/the-warm-home-discount-scheme",
+      "title": "The Warm Home Discount Scheme (GOV.UK)",
+      "retrieved": "2026-10-27"
+    }
+  ],
+  "clauses": [
+    {
+      "id": "WHD-1",
+      "text": "Scheme covers England and Wales only; Scotland has separate rules and Northern Ireland is not covered.",
+      "source_url": "https://www.gov.uk/the-warm-home-discount-scheme"
+    },
+    {
+      "id": "WHD-2",
+      "text": "On 23 August 2026, the claimant or their partner must have been receiving a qualifying means-tested benefit: Pension Credit, Housing Benefit, Universal Credit, or income-related Employment and Support Allowance.",
+      "source_url": "https://www.gov.uk/the-warm-home-discount-scheme/if-you-live-in-england-and-wales"
+    },
+    {
+      "id": "WHD-3",
+      "text": "On 23 August 2026, the claimant's or their partner's name must have been on the electricity bill.",
+      "source_url": "https://www.gov.uk/the-warm-home-discount-scheme/if-you-live-in-england-and-wales"
+    },
+    {
+      "id": "WHD-4",
+      "text": "The discount is a one-off £150 off the electricity bill.",
+      "source_url": "https://www.gov.uk/the-warm-home-discount-scheme"
+    }
+  ],
+  "derived": [],
+  "eligibility": {
+    "all": [
+      {
+        "field": "country",
+        "op": "in",
+        "value": [
+          "England",
+          "Wales"
+        ],
+        "clause": "WHD-1"
+      },
+      {
+        "field": "receives_qualifying_benefit_on_whd_date",
+        "op": "==",
+        "value": true,
+        "clause": "WHD-2"
+      },
+      {
+        "field": "electricity_bill_in_name",
+        "op": "==",
+        "value": true,
+        "clause": "WHD-3"
+      }
+    ]
+  },
+  "amount": {
+    "expr": {
+      "const": 150.0
+    },
+    "unit": "one_off",
+    "clause": "WHD-4"
+  },
+  "questions": {
+    "country": "In which country do you live: England, Wales, Scotland, or Northern Ireland?",
+    "receives_qualifying_benefit_on_whd_date": "On 23 August 2026, were you or your partner receiving Pension Credit, Housing Benefit, Universal Credit, or income-related Employment and Support Allowance?",
+    "electricity_bill_in_name": "On 23 August 2026, was your name (or your partner's name) on the electricity bill for your home?"
+  },
+  "already_receiving_field": "receives_qualifying_benefit_on_whd_date",
+  "notes": "Assumes the household's energy supplier participates in the Warm Home Discount scheme. Eligibility is assessed based on circumstances on 23 August 2026."
+}
