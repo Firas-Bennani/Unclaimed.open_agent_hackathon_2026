@@ -188,7 +188,7 @@ export default function Household() {
       <ChangesBanner changes={changes} onDismiss={() => setChanges(null)} />
       {error && <ErrorBox error={error} />}
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid items-start gap-4 md:grid-cols-2">
         {a.decisions.map((d) => (
           <BenefitCard
             key={d.benefit}

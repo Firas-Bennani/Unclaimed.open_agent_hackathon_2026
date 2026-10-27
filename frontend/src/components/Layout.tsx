@@ -39,7 +39,7 @@ export default function Layout() {
       <header className="bg-navy text-white">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-3 px-4 py-3 sm:px-6">
           <NavLink to="/" className="flex items-center gap-3">
-            <img src="/unclaimed_logo.png" alt="" className="h-10 w-10 rounded-lg bg-white/5 object-contain" />
+            <img src="/unclaimed_mark.png" alt="" className="h-10 w-10 rounded-lg" />
             <div>
               <div className="text-lg font-extrabold leading-tight tracking-tight">Unclaimed</div>
               <div className="text-xs text-mint">Find benefits. Prove decisions.</div>

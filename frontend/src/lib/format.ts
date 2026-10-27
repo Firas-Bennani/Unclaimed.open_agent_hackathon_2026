@@ -82,7 +82,7 @@ export function formatValue(v: unknown, field?: string): string {
   if (Array.isArray(v)) return v.map((x) => formatValue(x)).join(', ')
   if (typeof v === 'object') {
     const o = v as Record<string, unknown>
-    if ('ref' in o) return `${String(o.ref).replace(/_/g, ' ')} (${formatValue(o.value)})`
+    if ('ref' in o) return o.ref === 'expression' ? formatValue(o.value) : `${String(o.ref).replace(/_/g, ' ')} (${formatValue(o.value)})`
     return JSON.stringify(v)
   }
   return String(v)

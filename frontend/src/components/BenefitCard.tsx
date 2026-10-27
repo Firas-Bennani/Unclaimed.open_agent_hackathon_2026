@@ -62,7 +62,7 @@ export default function BenefitCard({
 
         {d.status === 'needs_info' && d.question && (
           <div className="rounded-lg border-2 border-gold bg-gold/10 p-3">
-            <div className="text-xs font-bold uppercase tracking-wide text-gold-dark">Question for the caseworker</div>
+            <div className="text-xs font-bold uppercase tracking-wide text-gold-dark">Ask the claimant (one question resolves this)</div>
             <p className="mt-1 font-semibold text-navy">{d.question}</p>
             {d.question_field && (
               <div className="mt-2">
@@ -86,7 +86,7 @@ export default function BenefitCard({
             <p className="text-xs text-slate-500">
               Rule version {d.rule_version}
               {d.arbiter.agreement === true && ' · both independent checks agree'}
-              {d.escalation_cause && ` · escalated: ${d.escalation_cause}`}
+              {d.escalation_cause && ` · ${d.status === 'needs_info' ? 'escalated' : 'note'}: ${d.escalation_cause}`}
             </p>
           </div>
         )}

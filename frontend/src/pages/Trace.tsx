@@ -121,7 +121,7 @@ function LaneCompare({ d }: { d: Decision }) {
           <div className="mt-2 text-sm">
             {d.arbiter.agreement === true && <span className="font-semibold text-teal-dark">Lanes agree</span>}
             {d.arbiter.agreement === false && <span className="font-semibold text-red-700">Lanes disagree</span>}
-            {d.arbiter.agreement === null && <span className="text-slate-500">No comparison</span>}
+            {d.arbiter.agreement === null && <span className="text-slate-500">{r.status === 'ok' ? 'No comparison needed' : 'Single lane only'}</span>}
           </div>
           {d.arbiter.cause && <p className="mt-1 text-xs text-slate-600">Cause: {d.arbiter.cause}</p>}
           {d.question && <p className="mt-2 rounded bg-gold/20 p-2 text-xs font-semibold text-navy">Q: {d.question}</p>}

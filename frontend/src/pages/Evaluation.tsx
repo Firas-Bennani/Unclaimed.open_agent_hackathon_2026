@@ -177,7 +177,7 @@ export default function Evaluation() {
   const n = (data?.n_households ?? data?.n) as number | undefined
   const best = (key: string, better: 'high' | 'low') => {
     const vals = systems.map((s) => summary[s]?.[key]).filter((v): v is number => typeof v === 'number')
-    if (!vals.length) return null
+    if (vals.length < 2 || vals.every((v) => v === vals[0])) return null
     return better === 'high' ? Math.max(...vals) : Math.min(...vals)
   }
 

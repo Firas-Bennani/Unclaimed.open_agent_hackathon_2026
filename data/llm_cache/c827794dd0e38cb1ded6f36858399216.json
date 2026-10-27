@@ -1,0 +1,9 @@
+{
+ "content": "{\n  \"facts\": []\n}",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "prompt_tokens": 322,
+ "completion_tokens": 9,
+ "latency_s": 3.0,
+ "model": "nvidia/nemotron-3.5-lightning-30b-a3b"
+}
