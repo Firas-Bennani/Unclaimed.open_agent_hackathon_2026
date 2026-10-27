@@ -56,6 +56,7 @@ BASE_SYSTEM = """You are an AI assistant helping a UK welfare-rights caseworker.
 records, decide for each benefit whether the household is eligible. Give the weekly amount if eligible (one-off amount for a
 one-off payment). Cite the policy paragraph ids (e.g. "PC-4") and the record ids you relied on. If you cannot tell, say cannot_decide.
 Data freshness policy: a record is current if it is dated within 400 days of the assessment date (pensions are uprated every April, so an April 2026 record is current in October 2026); only older records are out of date.
+Reconciliation policy: an approximate figure from a note (e.g. 'about £5,000') is consistent with a record if it is within 10% of it; that is not a conflict.
 Return JSON: {"decisions":[{"benefit":..., "decision":"eligible|not_eligible|cannot_decide", "weekly_amount":..., "clause_ids":[...], "record_ids":[...], "reason":"..."}]}"""
 
 
@@ -131,7 +132,9 @@ def run_unclaimed(hh: dict, use_reasoning: bool) -> dict:
         amt = d["amount_weekly"] if d["amount_weekly"] is not None else d["amount_one_off"]
         res[d["benefit"]] = {"decision": MAP[d["status"]], "amount": amt,
                              "citation_valid": d["reasoning"].get("status") != "invalid" and bool(d["clauses"]),
-                             "lane_status": d["reasoning"].get("status"), "cause": d["escalation_cause"]}
+                             "lane_status": d["reasoning"].get("status"), "cause": d["escalation_cause"],
+                             "lane_decision": d["reasoning"].get("decision"), "lane_reason": d["reasoning"].get("reason"),
+                             "lane_error": d["reasoning"].get("error")}
     notes = next((s for s in a["sources"] if s["source"] == "notes"), {})
     rm = a["reasoning_meta"]
     llm_latency = (rm.get("latency_s") or 0) + (notes.get("llm_latency_s") or 0)
@@ -155,11 +158,14 @@ def metrics(rows: list[dict], system: str) -> dict:
     tp = sum(e["decision"] == "escalate" for e, _ in pred_esc)
     yes_ok = [(e, p) for e, p, _ in decidable if e["decision"] == "yes" and p["decision"] == "yes" and e["amount"] is not None]
     amt_ok = sum(p["amount"] is not None and abs(p["amount"] - e["amount"]) <= 0.5 for e, p in yes_ok)
+    decided = [(e, p) for e, p, _ in items if p["decision"] != "escalate"]
     hh_rows = [r[system] for r in rows if system in r and "benefits" in r[system]]
     return {
         "decisions": n,
         "decidable": len(decidable),
         "accuracy_decidable": round(correct / len(decidable), 4),
+        "coverage": round(len(decided) / n, 4),
+        "selective_accuracy": round(sum(p["decision"] == e["decision"] for e, p in decided) / len(decided), 4) if decided else None,
         "wrong_yes": wrong_yes, "wrong_yes_rate": round(wrong_yes / n, 4),
         "wrong_no": wrong_no, "wrong_no_rate": round(wrong_no / n, 4),
         "escalations": len(pred_esc),
@@ -237,7 +243,8 @@ def main() -> None:
 
 LABELS = {"unclaimed": "Unclaimed (both lanes + arbiter)", "baseline": "Standard agent (Nemotron, raw data + policy text)",
           "deterministic": "Ablation: deterministic lane only"}
-ROWS = [("accuracy_decidable", "Accuracy on decidable cases", "pct"), ("wrong_yes", "Wrong \"yes\" (count)", "int"),
+ROWS = [("accuracy_decidable", "Accuracy on decidable cases", "pct"), ("coverage", "Coverage (share of decisions made, not escalated)", "pct"),
+        ("selective_accuracy", "Selective accuracy (correct among decisions made)", "pct"), ("wrong_yes", "Wrong \"yes\" (count)", "int"),
         ("wrong_yes_rate", "Wrong \"yes\" rate", "pct"), ("wrong_no", "Wrong \"no\" (count)", "int"),
         ("wrong_no_rate", "Wrong \"no\" rate", "pct"), ("escalations", "Escalations", "int"),
         ("escalation_precision", "Escalation precision", "pct"), ("escalation_recall", "Escalation recall", "pct"),
@@ -275,6 +282,21 @@ def write_eval_md(out: dict) -> None:
     errs = {k: v for k, v in out["errors"].items() if v}
     if errs:
         lines += ["## Errors", "", *[f"- {k}: {len(v)} household(s) failed: {', '.join(v)}" for k, v in errs.items()], ""]
+    if "unclaimed" in systems:
+        unnecessary = [(r, b, p) for r in out["rows"] if "benefits" in r.get("unclaimed", {})
+                       for b, p in r["unclaimed"]["benefits"].items()
+                       if p["decision"] == "escalate" and r["expected"][b]["decision"] != "escalate"]
+        causes = {}
+        for _, _, p in unnecessary:
+            causes[p.get("cause") or "?"] = causes.get(p.get("cause") or "?", 0) + 1
+        lines += ["## Why Unclaimed escalated when the evidence was sufficient", "",
+                  f"{len(unnecessary)} unnecessary escalation(s). By cause: " + (", ".join(f"{k}: {v}" for k, v in causes.items()) or "none") + ".", "",
+                  "| Household | Scenario | Benefit | Expected | Rule engine | Nemotron | Cause | Nemotron's reason |", "|---|---|---|---|---|---|---|---|"]
+        for r, b, p in unnecessary:
+            det = r.get("deterministic", {}).get("benefits", {}).get(b, {}).get("decision", "?")
+            reason = (p.get("lane_reason") or p.get("lane_error") or "").replace("|", "/").replace(chr(10), " ")
+            lines.append(f"| {r['id']} | {r['scenario']} | {b} | {r['expected'][b]['decision']} | {det} | {p.get('lane_decision')} | {p.get('cause')} | {reason} |")
+        lines += ["", "<!-- ANALYSIS -->", ""]
     mistakes = []
     for r in out["rows"]:
         for s in systems:

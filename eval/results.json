@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-10-27T13:59:13+00:00",
- "partial": true,
- "n_households": 48,
+ "generated_at": "2026-10-27T15:01:36+00:00",
+ "partial": false,
+ "n_households": 70,
  "n_planned": 70,
  "benefits": [
   "pension_credit",
@@ -14,58 +14,58 @@
   "extraction": "nvidia/nemotron-3.5-lightning-30b-a3b"
  },
  "ground_truth": "eval/reference.py on observable facts (plain Python from policy text) + hand-labelled escalations",
- "wall_time_s": 711.1,
+ "wall_time_s": 3561.2,
  "summary": {
   "unclaimed": {
-   "decisions": 192,
-   "decidable": 184,
-   "accuracy_decidable": 0.8587,
+   "decisions": 280,
+   "decidable": 248,
+   "accuracy_decidable": 0.9758,
    "wrong_yes": 0,
    "wrong_yes_rate": 0.0,
    "wrong_no": 0,
    "wrong_no_rate": 0.0,
-   "escalations": 34,
-   "escalation_precision": 0.2353,
+   "escalations": 38,
+   "escalation_precision": 0.8421,
    "escalation_recall": 1.0,
    "amount_accuracy": 1.0,
    "citation_validity": 1.0,
-   "latency_s_mean": 135.2,
-   "tokens_mean": 7360,
-   "households": 48
+   "latency_s_mean": 147.59,
+   "tokens_mean": 7249,
+   "households": 70
   },
   "baseline": {
-   "decisions": 192,
-   "decidable": 184,
-   "accuracy_decidable": 0.8261,
-   "wrong_yes": 8,
-   "wrong_yes_rate": 0.0417,
+   "decisions": 280,
+   "decidable": 248,
+   "accuracy_decidable": 0.7944,
+   "wrong_yes": 24,
+   "wrong_yes_rate": 0.0857,
+   "wrong_no": 1,
+   "wrong_no_rate": 0.0036,
+   "escalations": 58,
+   "escalation_precision": 0.2931,
+   "escalation_recall": 0.5312,
+   "amount_accuracy": 0.7778,
+   "citation_validity": 0.9429,
+   "latency_s_mean": 139.65,
+   "tokens_mean": 7170,
+   "households": 70
+  },
+  "deterministic": {
+   "decisions": 280,
+   "decidable": 248,
+   "accuracy_decidable": 1.0,
+   "wrong_yes": 0,
+   "wrong_yes_rate": 0.0,
    "wrong_no": 0,
    "wrong_no_rate": 0.0,
    "escalations": 32,
-   "escalation_precision": 0.2188,
-   "escalation_recall": 0.875,
-   "amount_accuracy": 0.7342,
-   "citation_validity": 0.9896,
-   "latency_s_mean": 117.36,
-   "tokens_mean": 6325,
-   "households": 48
-  },
-  "deterministic": {
-   "decisions": 192,
-   "decidable": 184,
-   "accuracy_decidable": 0.962,
-   "wrong_yes": 0,
-   "wrong_yes_rate": 0.0,
-   "wrong_no": 0,
-   "wrong_no_rate": 0.0,
-   "escalations": 15,
-   "escalation_precision": 0.5333,
+   "escalation_precision": 1.0,
    "escalation_recall": 1.0,
    "amount_accuracy": 1.0,
    "citation_validity": 1.0,
-   "latency_s_mean": 4.47,
-   "tokens_mean": 480,
-   "households": 48
+   "latency_s_mean": 3.48,
+   "tokens_mean": 541,
+   "households": 70
   }
  },
  "errors": {
@@ -149,17 +149,17 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 10.37,
-    "tokens": 699
+    "latency_s": 8.38,
+    "tokens": 753
    },
    "unclaimed": {
     "benefits": {
      "pension_credit": {
-      "decision": "yes",
-      "amount": 43.35,
+      "decision": "escalate",
+      "amount": null,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": null
+      "cause": "lanes disagree"
      },
      "attendance_allowance": {
       "decision": "escalate",
@@ -169,11 +169,11 @@
       "cause": "deterministic lane UNKNOWN (missing)"
      },
      "council_tax_reduction": {
-      "decision": "yes",
-      "amount": 22.0,
+      "decision": "escalate",
+      "amount": null,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": null
+      "cause": "lanes disagree"
      },
      "warm_home_discount": {
       "decision": "no",
@@ -183,8 +183,8 @@
       "cause": null
      }
     },
-    "latency_s": 107.54,
-    "tokens": 7762
+    "latency_s": 302.4,
+    "tokens": 11729
    },
    "baseline": {
     "benefits": {
@@ -195,23 +195,23 @@
      },
      "attendance_allowance": {
       "decision": "escalate",
-      "amount": null,
-      "citation_valid": true
+      "amount": 0.0,
+      "citation_valid": false
      },
      "council_tax_reduction": {
       "decision": "yes",
-      "amount": 22.0,
+      "amount": 29.33,
       "citation_valid": true
      },
      "warm_home_discount": {
       "decision": "no",
       "amount": 0.0,
-      "citation_valid": true
+      "citation_valid": false
      }
     },
-    "latency_s": 145.477,
-    "tokens": 7116,
-    "wall_s": 0.0
+    "latency_s": 267.872,
+    "tokens": 8488,
+    "wall_s": 267.87
    }
   },
   {
@@ -265,11 +265,11 @@
       "cause": "single lane (reasoning lane unavailable)"
      },
      "attendance_allowance": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "unavailable",
-      "cause": "deterministic lane UNKNOWN (missing)"
+      "cause": "single lane (reasoning lane unavailable)"
      },
      "council_tax_reduction": {
       "decision": "yes",
@@ -286,8 +286,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 5.57,
-    "tokens": 331
+    "latency_s": 6.59,
+    "tokens": 489
    },
    "unclaimed": {
     "benefits": {
@@ -299,11 +299,11 @@
       "cause": null
      },
      "attendance_allowance": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "deterministic lane UNKNOWN (missing)"
+      "cause": null
      },
      "council_tax_reduction": {
       "decision": "yes",
@@ -320,8 +320,8 @@
       "cause": null
      }
     },
-    "latency_s": 96.99,
-    "tokens": 6798
+    "latency_s": 115.17,
+    "tokens": 7640
    },
    "baseline": {
     "benefits": {
@@ -346,9 +346,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 95.904,
-    "tokens": 5441,
-    "wall_s": 0.0
+    "latency_s": 126.791,
+    "tokens": 6576,
+    "wall_s": 126.8
    }
   },
   {
@@ -423,17 +423,17 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 9.22,
-    "tokens": 600
+    "latency_s": 5.13,
+    "tokens": 602
    },
    "unclaimed": {
     "benefits": {
      "pension_credit": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 15.32,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "lanes disagree"
+      "cause": null
      },
      "attendance_allowance": {
       "decision": "no",
@@ -443,11 +443,11 @@
       "cause": null
      },
      "council_tax_reduction": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 25.21,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "lanes disagree"
+      "cause": null
      },
      "warm_home_discount": {
       "decision": "no",
@@ -457,8 +457,8 @@
       "cause": null
      }
     },
-    "latency_s": 172.91,
-    "tokens": 9247
+    "latency_s": 152.01,
+    "tokens": 7610
    },
    "baseline": {
     "benefits": {
@@ -474,18 +474,18 @@
      },
      "council_tax_reduction": {
       "decision": "yes",
-      "amount": 33.62,
+      "amount": 25.21,
       "citation_valid": true
      },
      "warm_home_discount": {
-      "decision": "yes",
-      "amount": 150.0,
+      "decision": "escalate",
+      "amount": null,
       "citation_valid": true
      }
     },
-    "latency_s": 114.919,
-    "tokens": 6222,
-    "wall_s": 0.02
+    "latency_s": 117.683,
+    "tokens": 6835,
+    "wall_s": 117.69
    }
   },
   {
@@ -560,8 +560,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 6.81,
-    "tokens": 413
+    "latency_s": 6.4,
+    "tokens": 483
    },
    "unclaimed": {
     "benefits": {
@@ -594,8 +594,8 @@
       "cause": null
      }
     },
-    "latency_s": 117.42,
-    "tokens": 6549
+    "latency_s": 140.02,
+    "tokens": 6662
    },
    "baseline": {
     "benefits": {
@@ -616,13 +616,13 @@
      },
      "warm_home_discount": {
       "decision": "escalate",
-      "amount": null,
+      "amount": 0.0,
       "citation_valid": true
      }
     },
-    "latency_s": 137.58,
-    "tokens": 6337,
-    "wall_s": 0.02
+    "latency_s": 155.84,
+    "tokens": 6435,
+    "wall_s": 155.84
    }
   },
   {
@@ -697,8 +697,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 6.68,
-    "tokens": 437
+    "latency_s": 6.7,
+    "tokens": 544
    },
    "unclaimed": {
     "benefits": {
@@ -731,8 +731,8 @@
       "cause": null
      }
     },
-    "latency_s": 142.97,
-    "tokens": 8457
+    "latency_s": 143.53,
+    "tokens": 6651
    },
    "baseline": {
     "benefits": {
@@ -757,9 +757,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 164.666,
-    "tokens": 6991,
-    "wall_s": 0.01
+    "latency_s": 115.766,
+    "tokens": 6414,
+    "wall_s": 115.77
    }
   },
   {
@@ -834,8 +834,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 7.54,
-    "tokens": 571
+    "latency_s": 3.91,
+    "tokens": 541
    },
    "unclaimed": {
     "benefits": {
@@ -868,35 +868,35 @@
       "cause": null
      }
     },
-    "latency_s": 81.11,
-    "tokens": 5747
+    "latency_s": 147.92,
+    "tokens": 7410
    },
    "baseline": {
     "benefits": {
      "pension_credit": {
       "decision": "yes",
       "amount": 46.36,
-      "citation_valid": true
+      "citation_valid": false
      },
      "attendance_allowance": {
       "decision": "no",
       "amount": 0.0,
-      "citation_valid": true
+      "citation_valid": false
      },
      "council_tax_reduction": {
       "decision": "yes",
       "amount": 36.82,
-      "citation_valid": true
+      "citation_valid": false
      },
      "warm_home_discount": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "no",
+      "amount": 0.0,
       "citation_valid": true
      }
     },
-    "latency_s": 125.236,
-    "tokens": 6241,
-    "wall_s": 0.0
+    "latency_s": 235.301,
+    "tokens": 8978,
+    "wall_s": 237.64
    }
   },
   {
@@ -971,8 +971,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 3.34,
-    "tokens": 434
+    "latency_s": 5.6,
+    "tokens": 540
    },
    "unclaimed": {
     "benefits": {
@@ -1005,8 +1005,8 @@
       "cause": null
      }
     },
-    "latency_s": 98.15,
-    "tokens": 6808
+    "latency_s": 144.55,
+    "tokens": 7212
    },
    "baseline": {
     "benefits": {
@@ -1027,13 +1027,13 @@
      },
      "warm_home_discount": {
       "decision": "escalate",
-      "amount": null,
+      "amount": 0.0,
       "citation_valid": true
      }
     },
-    "latency_s": 102.198,
-    "tokens": 6206,
-    "wall_s": 0.0
+    "latency_s": 109.365,
+    "tokens": 6317,
+    "wall_s": 111.7
    }
   },
   {
@@ -1108,8 +1108,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 4.48,
-    "tokens": 417
+    "latency_s": 1.57,
+    "tokens": 487
    },
    "unclaimed": {
     "benefits": {
@@ -1142,8 +1142,8 @@
       "cause": null
      }
     },
-    "latency_s": 143.25,
-    "tokens": 8159
+    "latency_s": 138.91,
+    "tokens": 7834
    },
    "baseline": {
     "benefits": {
@@ -1159,18 +1159,18 @@
      },
      "council_tax_reduction": {
       "decision": "yes",
-      "amount": 31.58,
+      "amount": 42.1,
       "citation_valid": true
      },
      "warm_home_discount": {
       "decision": "escalate",
-      "amount": 0.0,
+      "amount": null,
       "citation_valid": true
      }
     },
-    "latency_s": 87.16,
-    "tokens": 6690,
-    "wall_s": 0.02
+    "latency_s": 195.83,
+    "tokens": 7959,
+    "wall_s": 195.83
    }
   },
   {
@@ -1245,7 +1245,7 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 4.38,
+    "latency_s": 4.0,
     "tokens": 601
    },
    "unclaimed": {
@@ -1279,8 +1279,8 @@
       "cause": null
      }
     },
-    "latency_s": 74.65,
-    "tokens": 6853
+    "latency_s": 182.2,
+    "tokens": 6975
    },
    "baseline": {
     "benefits": {
@@ -1305,9 +1305,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 178.285,
-    "tokens": 7422,
-    "wall_s": 0.02
+    "latency_s": 190.14,
+    "tokens": 7427,
+    "wall_s": 190.14
    }
   },
   {
@@ -1382,8 +1382,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 2.59,
-    "tokens": 440
+    "latency_s": 2.25,
+    "tokens": 548
    },
    "unclaimed": {
     "benefits": {
@@ -1416,8 +1416,8 @@
       "cause": null
      }
     },
-    "latency_s": 162.25,
-    "tokens": 6168
+    "latency_s": 220.3,
+    "tokens": 7788
    },
    "baseline": {
     "benefits": {
@@ -1442,9 +1442,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 89.114,
-    "tokens": 5394,
-    "wall_s": 0.02
+    "latency_s": 108.434,
+    "tokens": 5758,
+    "wall_s": 108.44
    }
   },
   {
@@ -1498,11 +1498,11 @@
       "cause": "single lane (reasoning lane unavailable)"
      },
      "attendance_allowance": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "unavailable",
-      "cause": "deterministic lane UNKNOWN (missing)"
+      "cause": "single lane (reasoning lane unavailable)"
      },
      "council_tax_reduction": {
       "decision": "yes",
@@ -1519,8 +1519,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 2.91,
-    "tokens": 327
+    "latency_s": 2.03,
+    "tokens": 483
    },
    "unclaimed": {
     "benefits": {
@@ -1532,11 +1532,11 @@
       "cause": null
      },
      "attendance_allowance": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "deterministic lane UNKNOWN (missing)"
+      "cause": null
      },
      "council_tax_reduction": {
       "decision": "yes",
@@ -1553,8 +1553,8 @@
       "cause": null
      }
     },
-    "latency_s": 186.41,
-    "tokens": 5640
+    "latency_s": 157.92,
+    "tokens": 7999
    },
    "baseline": {
     "benefits": {
@@ -1579,9 +1579,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 70.088,
-    "tokens": 6251,
-    "wall_s": 0.02
+    "latency_s": 119.14,
+    "tokens": 6706,
+    "wall_s": 119.14
    }
   },
   {
@@ -1656,17 +1656,17 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 2.31,
-    "tokens": 485
+    "latency_s": 3.97,
+    "tokens": 592
    },
    "unclaimed": {
     "benefits": {
      "pension_credit": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 87.31,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "lanes disagree"
+      "cause": null
      },
      "attendance_allowance": {
       "decision": "no",
@@ -1676,11 +1676,11 @@
       "cause": null
      },
      "council_tax_reduction": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 33.08,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "lanes disagree"
+      "cause": null
      },
      "warm_home_discount": {
       "decision": "yes",
@@ -1690,8 +1690,8 @@
       "cause": null
      }
     },
-    "latency_s": 173.33,
-    "tokens": 10161
+    "latency_s": 180.61,
+    "tokens": 7463
    },
    "baseline": {
     "benefits": {
@@ -1716,9 +1716,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 121.973,
-    "tokens": 5581,
-    "wall_s": 0.02
+    "latency_s": 106.046,
+    "tokens": 6597,
+    "wall_s": 106.05
    }
   },
   {
@@ -1793,8 +1793,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 2.18,
-    "tokens": 412
+    "latency_s": 1.38,
+    "tokens": 482
    },
    "unclaimed": {
     "benefits": {
@@ -1827,8 +1827,8 @@
       "cause": null
      }
     },
-    "latency_s": 102.76,
-    "tokens": 7009
+    "latency_s": 127.64,
+    "tokens": 7400
    },
    "baseline": {
     "benefits": {
@@ -1853,9 +1853,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 78.768,
-    "tokens": 5338,
-    "wall_s": 0.02
+    "latency_s": 109.72,
+    "tokens": 6568,
+    "wall_s": 109.72
    }
   },
   {
@@ -1930,8 +1930,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 1.74,
-    "tokens": 430
+    "latency_s": 2.6,
+    "tokens": 536
    },
    "unclaimed": {
     "benefits": {
@@ -1964,8 +1964,8 @@
       "cause": null
      }
     },
-    "latency_s": 88.1,
-    "tokens": 6286
+    "latency_s": 201.0,
+    "tokens": 8384
    },
    "baseline": {
     "benefits": {
@@ -1981,7 +1981,7 @@
      },
      "council_tax_reduction": {
       "decision": "yes",
-      "amount": 35.69,
+      "amount": 26.77,
       "citation_valid": true
      },
      "warm_home_discount": {
@@ -1990,9 +1990,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 106.155,
-    "tokens": 5859,
-    "wall_s": 0.02
+    "latency_s": 122.037,
+    "tokens": 7063,
+    "wall_s": 122.04
    }
   },
   {
@@ -2067,69 +2067,69 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 2.6,
-    "tokens": 467
+    "latency_s": 2.45,
+    "tokens": 537
    },
    "unclaimed": {
     "benefits": {
      "pension_credit": {
-      "decision": "escalate",
-      "amount": null,
-      "citation_valid": true,
-      "lane_status": "ok",
-      "cause": "lanes disagree"
-     },
-     "attendance_allowance": {
-      "decision": "no",
-      "amount": null,
-      "citation_valid": true,
-      "lane_status": "ok",
-      "cause": null
-     },
-     "council_tax_reduction": {
-      "decision": "escalate",
-      "amount": null,
-      "citation_valid": true,
-      "lane_status": "ok",
-      "cause": "lanes disagree"
-     },
-     "warm_home_discount": {
-      "decision": "no",
-      "amount": null,
-      "citation_valid": true,
-      "lane_status": "ok",
-      "cause": null
-     }
-    },
-    "latency_s": 181.16,
-    "tokens": 8674
-   },
-   "baseline": {
-    "benefits": {
-     "pension_credit": {
       "decision": "yes",
       "amount": 22.99,
-      "citation_valid": true
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
      },
      "attendance_allowance": {
-      "decision": "escalate",
-      "amount": 0.0,
-      "citation_valid": true
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
      },
      "council_tax_reduction": {
       "decision": "yes",
       "amount": 38.61,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 184.68,
+    "tokens": 8494
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
       "citation_valid": true
      },
      "warm_home_discount": {
-      "decision": "yes",
-      "amount": 150.0,
+      "decision": "escalate",
+      "amount": null,
       "citation_valid": true
      }
     },
-    "latency_s": 179.656,
-    "tokens": 6705,
-    "wall_s": 0.02
+    "latency_s": 153.674,
+    "tokens": 9387,
+    "wall_s": 153.68
    }
   },
   {
@@ -2204,8 +2204,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 8.02,
-    "tokens": 476
+    "latency_s": 2.08,
+    "tokens": 546
    },
    "unclaimed": {
     "benefits": {
@@ -2238,8 +2238,8 @@
       "cause": null
      }
     },
-    "latency_s": 123.29,
-    "tokens": 6999
+    "latency_s": 191.38,
+    "tokens": 6863
    },
    "baseline": {
     "benefits": {
@@ -2264,9 +2264,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 48.511,
-    "tokens": 6088,
-    "wall_s": 0.02
+    "latency_s": 108.58,
+    "tokens": 6365,
+    "wall_s": 108.58
    }
   },
   {
@@ -2320,11 +2320,11 @@
       "cause": "single lane (reasoning lane unavailable)"
      },
      "attendance_allowance": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "unavailable",
-      "cause": "deterministic lane UNKNOWN (missing)"
+      "cause": "single lane (reasoning lane unavailable)"
      },
      "council_tax_reduction": {
       "decision": "yes",
@@ -2341,8 +2341,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 1.01,
-    "tokens": 368
+    "latency_s": 1.55,
+    "tokens": 486
    },
    "unclaimed": {
     "benefits": {
@@ -2354,11 +2354,11 @@
       "cause": null
      },
      "attendance_allowance": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "deterministic lane UNKNOWN (missing)"
+      "cause": null
      },
      "council_tax_reduction": {
       "decision": "yes",
@@ -2375,8 +2375,8 @@
       "cause": null
      }
     },
-    "latency_s": 100.99,
-    "tokens": 6995
+    "latency_s": 80.33,
+    "tokens": 6791
    },
    "baseline": {
     "benefits": {
@@ -2386,8 +2386,8 @@
       "citation_valid": true
      },
      "attendance_allowance": {
-      "decision": "no",
-      "amount": 0.0,
+      "decision": "escalate",
+      "amount": null,
       "citation_valid": true
      },
      "council_tax_reduction": {
@@ -2397,13 +2397,13 @@
      },
      "warm_home_discount": {
       "decision": "escalate",
-      "amount": 0.0,
+      "amount": null,
       "citation_valid": true
      }
     },
-    "latency_s": 75.251,
-    "tokens": 5822,
-    "wall_s": 0.02
+    "latency_s": 123.547,
+    "tokens": 7041,
+    "wall_s": 123.55
    }
   },
   {
@@ -2478,8 +2478,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 4.07,
-    "tokens": 527
+    "latency_s": 2.64,
+    "tokens": 597
    },
    "unclaimed": {
     "benefits": {
@@ -2512,8 +2512,8 @@
       "cause": null
      }
     },
-    "latency_s": 169.37,
-    "tokens": 8047
+    "latency_s": 81.71,
+    "tokens": 6877
    },
    "baseline": {
     "benefits": {
@@ -2533,14 +2533,14 @@
       "citation_valid": true
      },
      "warm_home_discount": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 150.0,
       "citation_valid": true
      }
     },
-    "latency_s": 249.513,
-    "tokens": 7431,
-    "wall_s": 0.01
+    "latency_s": 122.325,
+    "tokens": 6406,
+    "wall_s": 122.33
    }
   },
   {
@@ -2615,8 +2615,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 3.22,
-    "tokens": 573
+    "latency_s": 3.12,
+    "tokens": 643
    },
    "unclaimed": {
     "benefits": {
@@ -2649,8 +2649,8 @@
       "cause": null
      }
     },
-    "latency_s": 115.26,
-    "tokens": 6590
+    "latency_s": 99.49,
+    "tokens": 6714
    },
    "baseline": {
     "benefits": {
@@ -2675,9 +2675,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 81.291,
-    "tokens": 4999,
-    "wall_s": 0.02
+    "latency_s": 72.106,
+    "tokens": 5182,
+    "wall_s": 72.11
    }
   },
   {
@@ -2752,8 +2752,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 5.19,
-    "tokens": 492
+    "latency_s": 3.05,
+    "tokens": 562
    },
    "unclaimed": {
     "benefits": {
@@ -2765,11 +2765,11 @@
       "cause": null
      },
      "attendance_allowance": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 76.7,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "lanes disagree"
+      "cause": null
      },
      "council_tax_reduction": {
       "decision": "no",
@@ -2786,8 +2786,8 @@
       "cause": null
      }
     },
-    "latency_s": 132.53,
-    "tokens": 6475
+    "latency_s": 119.96,
+    "tokens": 7122
    },
    "baseline": {
     "benefits": {
@@ -2807,14 +2807,14 @@
       "citation_valid": true
      },
      "warm_home_discount": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": 0.0,
       "citation_valid": true
      }
     },
-    "latency_s": 83.957,
-    "tokens": 5520,
-    "wall_s": 0.02
+    "latency_s": 61.47,
+    "tokens": 5834,
+    "wall_s": 61.47
    }
   },
   {
@@ -2889,17 +2889,17 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 4.53,
-    "tokens": 674
+    "latency_s": 9.52,
+    "tokens": 744
    },
    "unclaimed": {
     "benefits": {
      "pension_credit": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "lanes disagree"
+      "cause": null
      },
      "attendance_allowance": {
       "decision": "yes",
@@ -2923,8 +2923,8 @@
       "cause": null
      }
     },
-    "latency_s": 148.09,
-    "tokens": 8606
+    "latency_s": 105.3,
+    "tokens": 6181
    },
    "baseline": {
     "benefits": {
@@ -2949,9 +2949,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 85.251,
-    "tokens": 5515,
-    "wall_s": 0.02
+    "latency_s": 93.899,
+    "tokens": 5842,
+    "wall_s": 93.9
    }
   },
   {
@@ -3005,11 +3005,11 @@
       "cause": "single lane (reasoning lane unavailable)"
      },
      "attendance_allowance": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "unavailable",
-      "cause": "deterministic lane UNKNOWN (missing)"
+      "cause": "single lane (reasoning lane unavailable)"
      },
      "council_tax_reduction": {
       "decision": "no",
@@ -3026,8 +3026,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 0.66,
-    "tokens": 324
+    "latency_s": 1.7,
+    "tokens": 478
    },
    "unclaimed": {
     "benefits": {
@@ -3039,11 +3039,11 @@
       "cause": null
      },
      "attendance_allowance": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "deterministic lane UNKNOWN (missing)"
+      "cause": null
      },
      "council_tax_reduction": {
       "decision": "no",
@@ -3060,8 +3060,8 @@
       "cause": null
      }
     },
-    "latency_s": 134.66,
-    "tokens": 5590
+    "latency_s": 75.76,
+    "tokens": 5680
    },
    "baseline": {
     "benefits": {
@@ -3081,14 +3081,14 @@
       "citation_valid": true
      },
      "warm_home_discount": {
-      "decision": "no",
+      "decision": "escalate",
       "amount": 0.0,
       "citation_valid": true
      }
     },
-    "latency_s": 86.022,
-    "tokens": 4960,
-    "wall_s": 0.02
+    "latency_s": 100.516,
+    "tokens": 6473,
+    "wall_s": 100.52
    }
   },
   {
@@ -3163,8 +3163,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 2.71,
-    "tokens": 443
+    "latency_s": 2.4,
+    "tokens": 551
    },
    "unclaimed": {
     "benefits": {
@@ -3197,8 +3197,8 @@
       "cause": null
      }
     },
-    "latency_s": 66.38,
-    "tokens": 5001
+    "latency_s": 95.6,
+    "tokens": 6094
    },
    "baseline": {
     "benefits": {
@@ -3218,14 +3218,14 @@
       "citation_valid": true
      },
      "warm_home_discount": {
-      "decision": "no",
+      "decision": "escalate",
       "amount": 0.0,
       "citation_valid": true
      }
     },
-    "latency_s": 91.225,
-    "tokens": 5566,
-    "wall_s": 0.02
+    "latency_s": 140.418,
+    "tokens": 6035,
+    "wall_s": 140.42
    }
   },
   {
@@ -3300,8 +3300,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 7.41,
-    "tokens": 566
+    "latency_s": 2.44,
+    "tokens": 536
    },
    "unclaimed": {
     "benefits": {
@@ -3334,8 +3334,8 @@
       "cause": null
      }
     },
-    "latency_s": 202.47,
-    "tokens": 9776
+    "latency_s": 102.3,
+    "tokens": 6253
    },
    "baseline": {
     "benefits": {
@@ -3360,9 +3360,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 85.86,
-    "tokens": 4887,
-    "wall_s": 0.03
+    "latency_s": 79.883,
+    "tokens": 5994,
+    "wall_s": 79.89
    }
   },
   {
@@ -3437,17 +3437,17 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 3.3,
-    "tokens": 565
+    "latency_s": 7.01,
+    "tokens": 672
    },
    "unclaimed": {
     "benefits": {
      "pension_credit": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 53.68,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "lanes disagree"
+      "cause": null
      },
      "attendance_allowance": {
       "decision": "yes",
@@ -3457,11 +3457,11 @@
       "cause": null
      },
      "council_tax_reduction": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 23.18,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "lanes disagree"
+      "cause": null
      },
      "warm_home_discount": {
       "decision": "no",
@@ -3471,8 +3471,8 @@
       "cause": null
      }
     },
-    "latency_s": 190.23,
-    "tokens": 8770
+    "latency_s": 86.2,
+    "tokens": 6800
    },
    "baseline": {
     "benefits": {
@@ -3484,22 +3484,22 @@
      "attendance_allowance": {
       "decision": "yes",
       "amount": 114.6,
-      "citation_valid": false
+      "citation_valid": true
      },
      "council_tax_reduction": {
       "decision": "yes",
-      "amount": 30.9,
+      "amount": 23.18,
       "citation_valid": true
      },
      "warm_home_discount": {
-      "decision": "escalate",
-      "amount": 0.0,
+      "decision": "yes",
+      "amount": 150.0,
       "citation_valid": true
      }
     },
-    "latency_s": 124.921,
-    "tokens": 6726,
-    "wall_s": 0.01
+    "latency_s": 171.937,
+    "tokens": 8466,
+    "wall_s": 171.94
    }
   },
   {
@@ -3574,8 +3574,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 3.58,
-    "tokens": 559
+    "latency_s": 2.29,
+    "tokens": 570
    },
    "unclaimed": {
     "benefits": {
@@ -3608,8 +3608,8 @@
       "cause": null
      }
     },
-    "latency_s": 183.86,
-    "tokens": 10458
+    "latency_s": 158.23,
+    "tokens": 7707
    },
    "baseline": {
     "benefits": {
@@ -3625,7 +3625,7 @@
      },
      "council_tax_reduction": {
       "decision": "yes",
-      "amount": 33.73,
+      "amount": 25.3,
       "citation_valid": true
      },
      "warm_home_discount": {
@@ -3634,9 +3634,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 178.005,
-    "tokens": 6992,
-    "wall_s": 0.02
+    "latency_s": 114.686,
+    "tokens": 7130,
+    "wall_s": 114.69
    }
   },
   {
@@ -3711,17 +3711,17 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 3.29,
-    "tokens": 651
+    "latency_s": 5.93,
+    "tokens": 714
    },
    "unclaimed": {
     "benefits": {
      "pension_credit": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 83.39,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "lanes disagree"
+      "cause": null
      },
      "attendance_allowance": {
       "decision": "yes",
@@ -3731,11 +3731,11 @@
       "cause": null
      },
      "council_tax_reduction": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 27.99,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "lanes disagree"
+      "cause": null
      },
      "warm_home_discount": {
       "decision": "no",
@@ -3745,8 +3745,8 @@
       "cause": null
      }
     },
-    "latency_s": 160.51,
-    "tokens": 9231
+    "latency_s": 73.3,
+    "tokens": 7375
    },
    "baseline": {
     "benefits": {
@@ -3766,14 +3766,14 @@
       "citation_valid": true
      },
      "warm_home_discount": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 150.0,
       "citation_valid": true
      }
     },
-    "latency_s": 126.072,
-    "tokens": 7527,
-    "wall_s": 0.02
+    "latency_s": 111.508,
+    "tokens": 6454,
+    "wall_s": 111.51
    }
   },
   {
@@ -3848,8 +3848,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 3.45,
-    "tokens": 558
+    "latency_s": 2.13,
+    "tokens": 569
    },
    "unclaimed": {
     "benefits": {
@@ -3882,8 +3882,8 @@
       "cause": null
      }
     },
-    "latency_s": 147.79,
-    "tokens": 7566
+    "latency_s": 216.41,
+    "tokens": 8537
    },
    "baseline": {
     "benefits": {
@@ -3903,14 +3903,14 @@
       "citation_valid": true
      },
      "warm_home_discount": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 150.0,
       "citation_valid": true
      }
     },
-    "latency_s": 132.653,
-    "tokens": 8151,
-    "wall_s": 0.02
+    "latency_s": 104.573,
+    "tokens": 6857,
+    "wall_s": 104.58
    }
   },
   {
@@ -3985,8 +3985,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 4.93,
-    "tokens": 433
+    "latency_s": 2.35,
+    "tokens": 540
    },
    "unclaimed": {
     "benefits": {
@@ -4019,8 +4019,8 @@
       "cause": null
      }
     },
-    "latency_s": 71.0,
-    "tokens": 5018
+    "latency_s": 49.44,
+    "tokens": 5252
    },
    "baseline": {
     "benefits": {
@@ -4045,9 +4045,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 70.911,
-    "tokens": 5955,
-    "wall_s": 0.02
+    "latency_s": 151.411,
+    "tokens": 6559,
+    "wall_s": 151.41
    }
   },
   {
@@ -4122,8 +4122,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 27.3,
-    "tokens": 493
+    "latency_s": 3.63,
+    "tokens": 601
    },
    "unclaimed": {
     "benefits": {
@@ -4156,8 +4156,8 @@
       "cause": null
      }
     },
-    "latency_s": 108.42,
-    "tokens": 5851
+    "latency_s": 111.77,
+    "tokens": 6162
    },
    "baseline": {
     "benefits": {
@@ -4182,9 +4182,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 83.518,
-    "tokens": 6101,
-    "wall_s": 0.02
+    "latency_s": 98.412,
+    "tokens": 5927,
+    "wall_s": 98.41
    }
   },
   {
@@ -4259,8 +4259,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 0.49,
-    "tokens": 324
+    "latency_s": 1.76,
+    "tokens": 478
    },
    "unclaimed": {
     "benefits": {
@@ -4293,8 +4293,8 @@
       "cause": null
      }
     },
-    "latency_s": 61.6,
-    "tokens": 5360
+    "latency_s": 57.49,
+    "tokens": 4874
    },
    "baseline": {
     "benefits": {
@@ -4319,9 +4319,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 127.791,
-    "tokens": 5533,
-    "wall_s": 0.02
+    "latency_s": 82.21,
+    "tokens": 5788,
+    "wall_s": 82.21
    }
   },
   {
@@ -4396,8 +4396,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 3.15,
-    "tokens": 440
+    "latency_s": 2.75,
+    "tokens": 548
    },
    "unclaimed": {
     "benefits": {
@@ -4430,15 +4430,15 @@
       "cause": null
      }
     },
-    "latency_s": 194.97,
-    "tokens": 8920
+    "latency_s": 174.05,
+    "tokens": 9896
    },
    "baseline": {
     "benefits": {
      "pension_credit": {
       "decision": "yes",
       "amount": 71.88,
-      "citation_valid": true
+      "citation_valid": false
      },
      "attendance_allowance": {
       "decision": "no",
@@ -4456,9 +4456,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 83.251,
-    "tokens": 6414,
-    "wall_s": 0.02
+    "latency_s": 210.815,
+    "tokens": 9768,
+    "wall_s": 210.82
    }
   },
   {
@@ -4533,8 +4533,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 3.61,
-    "tokens": 572
+    "latency_s": 2.4,
+    "tokens": 539
    },
    "unclaimed": {
     "benefits": {
@@ -4567,8 +4567,8 @@
       "cause": null
      }
     },
-    "latency_s": 75.79,
-    "tokens": 6378
+    "latency_s": 208.96,
+    "tokens": 8245
    },
    "baseline": {
     "benefits": {
@@ -4584,7 +4584,7 @@
      },
      "council_tax_reduction": {
       "decision": "escalate",
-      "amount": 0.0,
+      "amount": null,
       "citation_valid": true
      },
      "warm_home_discount": {
@@ -4593,9 +4593,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 113.205,
-    "tokens": 6387,
-    "wall_s": 0.02
+    "latency_s": 231.567,
+    "tokens": 7609,
+    "wall_s": 231.57
    }
   },
   {
@@ -4670,8 +4670,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 2.01,
-    "tokens": 438
+    "latency_s": 2.53,
+    "tokens": 545
    },
    "unclaimed": {
     "benefits": {
@@ -4704,8 +4704,8 @@
       "cause": null
      }
     },
-    "latency_s": 154.81,
-    "tokens": 8340
+    "latency_s": 120.91,
+    "tokens": 6705
    },
    "baseline": {
     "benefits": {
@@ -4720,8 +4720,8 @@
       "citation_valid": true
      },
      "council_tax_reduction": {
-      "decision": "yes",
-      "amount": 26.76,
+      "decision": "escalate",
+      "amount": 0.0,
       "citation_valid": true
      },
      "warm_home_discount": {
@@ -4730,9 +4730,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 89.56,
-    "tokens": 5395,
-    "wall_s": 0.02
+    "latency_s": 109.391,
+    "tokens": 6523,
+    "wall_s": 109.4
    }
   },
   {
@@ -4807,8 +4807,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 1.71,
-    "tokens": 413
+    "latency_s": 1.43,
+    "tokens": 483
    },
    "unclaimed": {
     "benefits": {
@@ -4841,8 +4841,8 @@
       "cause": null
      }
     },
-    "latency_s": 78.82,
-    "tokens": 6112
+    "latency_s": 141.15,
+    "tokens": 6363
    },
    "baseline": {
     "benefits": {
@@ -4867,9 +4867,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 104.711,
-    "tokens": 6567,
-    "wall_s": 0.02
+    "latency_s": 150.756,
+    "tokens": 7705,
+    "wall_s": 150.76
    }
   },
   {
@@ -4944,8 +4944,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 4.22,
-    "tokens": 566
+    "latency_s": 2.3,
+    "tokens": 536
    },
    "unclaimed": {
     "benefits": {
@@ -4978,8 +4978,8 @@
       "cause": null
      }
     },
-    "latency_s": 107.16,
-    "tokens": 7741
+    "latency_s": 110.6,
+    "tokens": 6666
    },
    "baseline": {
     "benefits": {
@@ -4999,14 +4999,14 @@
       "citation_valid": true
      },
      "warm_home_discount": {
-      "decision": "yes",
-      "amount": 150.0,
+      "decision": "escalate",
+      "amount": 0.0,
       "citation_valid": true
      }
     },
-    "latency_s": 275.075,
-    "tokens": 7409,
-    "wall_s": 275.08
+    "latency_s": 216.86,
+    "tokens": 9213,
+    "wall_s": 216.87
    }
   },
   {
@@ -5081,8 +5081,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 1.41,
-    "tokens": 409
+    "latency_s": 1.38,
+    "tokens": 479
    },
    "unclaimed": {
     "benefits": {
@@ -5115,8 +5115,8 @@
       "cause": null
      }
     },
-    "latency_s": 91.56,
-    "tokens": 7126
+    "latency_s": 153.84,
+    "tokens": 7931
    },
    "baseline": {
     "benefits": {
@@ -5141,9 +5141,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 128.25,
-    "tokens": 6437,
-    "wall_s": 128.25
+    "latency_s": 97.776,
+    "tokens": 6885,
+    "wall_s": 97.78
    }
   },
   {
@@ -5218,8 +5218,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 2.83,
-    "tokens": 580
+    "latency_s": 3.23,
+    "tokens": 547
    },
    "unclaimed": {
     "benefits": {
@@ -5252,8 +5252,8 @@
       "cause": null
      }
     },
-    "latency_s": 92.25,
-    "tokens": 6506
+    "latency_s": 231.64,
+    "tokens": 7536
    },
    "baseline": {
     "benefits": {
@@ -5269,7 +5269,7 @@
      },
      "council_tax_reduction": {
       "decision": "yes",
-      "amount": 39.29,
+      "amount": 29.46,
       "citation_valid": true
      },
      "warm_home_discount": {
@@ -5278,9 +5278,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 109.705,
-    "tokens": 6287,
-    "wall_s": 109.71
+    "latency_s": 127.561,
+    "tokens": 6012,
+    "wall_s": 127.56
    }
   },
   {
@@ -5355,8 +5355,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 4.58,
-    "tokens": 568
+    "latency_s": 1.95,
+    "tokens": 535
    },
    "unclaimed": {
     "benefits": {
@@ -5375,11 +5375,11 @@
       "cause": null
      },
      "council_tax_reduction": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 22.45,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "lanes disagree"
+      "cause": null
      },
      "warm_home_discount": {
       "decision": "no",
@@ -5389,35 +5389,35 @@
       "cause": null
      }
     },
-    "latency_s": 266.45,
-    "tokens": 9899
+    "latency_s": 118.74,
+    "tokens": 7052
    },
    "baseline": {
     "benefits": {
      "pension_credit": {
       "decision": "no",
       "amount": 0.0,
-      "citation_valid": true
+      "citation_valid": false
      },
      "attendance_allowance": {
       "decision": "no",
       "amount": 0.0,
-      "citation_valid": true
+      "citation_valid": false
      },
      "council_tax_reduction": {
       "decision": "yes",
       "amount": 22.45,
-      "citation_valid": true
+      "citation_valid": false
      },
      "warm_home_discount": {
       "decision": "no",
       "amount": 0.0,
-      "citation_valid": true
+      "citation_valid": false
      }
     },
-    "latency_s": 82.643,
-    "tokens": 6187,
-    "wall_s": 82.65
+    "latency_s": 207.067,
+    "tokens": 8675,
+    "wall_s": 207.07
    }
   },
   {
@@ -5471,11 +5471,11 @@
       "cause": "single lane (reasoning lane unavailable)"
      },
      "attendance_allowance": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "unavailable",
-      "cause": "deterministic lane UNKNOWN (missing)"
+      "cause": "single lane (reasoning lane unavailable)"
      },
      "council_tax_reduction": {
       "decision": "no",
@@ -5492,8 +5492,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 0.52,
-    "tokens": 327
+    "latency_s": 2.81,
+    "tokens": 483
    },
    "unclaimed": {
     "benefits": {
@@ -5505,11 +5505,11 @@
       "cause": null
      },
      "attendance_allowance": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "deterministic lane UNKNOWN (missing)"
+      "cause": null
      },
      "council_tax_reduction": {
       "decision": "no",
@@ -5526,8 +5526,8 @@
       "cause": null
      }
     },
-    "latency_s": 161.67,
-    "tokens": 8725
+    "latency_s": 146.64,
+    "tokens": 6952
    },
    "baseline": {
     "benefits": {
@@ -5538,7 +5538,7 @@
      },
      "attendance_allowance": {
       "decision": "no",
-      "amount": 0.0,
+      "amount": null,
       "citation_valid": true
      },
      "council_tax_reduction": {
@@ -5548,13 +5548,13 @@
      },
      "warm_home_discount": {
       "decision": "escalate",
-      "amount": 0.0,
+      "amount": null,
       "citation_valid": true
      }
     },
-    "latency_s": 142.315,
-    "tokens": 7300,
-    "wall_s": 142.32
+    "latency_s": 135.18,
+    "tokens": 7814,
+    "wall_s": 135.18
    }
   },
   {
@@ -5629,8 +5629,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 3.0,
-    "tokens": 553
+    "latency_s": 3.66,
+    "tokens": 565
    },
    "unclaimed": {
     "benefits": {
@@ -5663,8 +5663,8 @@
       "cause": null
      }
     },
-    "latency_s": 240.25,
-    "tokens": 7707
+    "latency_s": 177.69,
+    "tokens": 8330
    },
    "baseline": {
     "benefits": {
@@ -5676,7 +5676,7 @@
      "attendance_allowance": {
       "decision": "yes",
       "amount": 76.7,
-      "citation_valid": true
+      "citation_valid": false
      },
      "council_tax_reduction": {
       "decision": "yes",
@@ -5684,14 +5684,14 @@
       "citation_valid": true
      },
      "warm_home_discount": {
-      "decision": "yes",
-      "amount": 150.0,
+      "decision": "escalate",
+      "amount": null,
       "citation_valid": true
      }
     },
-    "latency_s": 128.296,
-    "tokens": 6783,
-    "wall_s": 128.3
+    "latency_s": 216.013,
+    "tokens": 8591,
+    "wall_s": 216.02
    }
   },
   {
@@ -5766,8 +5766,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 9.44,
-    "tokens": 604
+    "latency_s": 5.38,
+    "tokens": 674
    },
    "unclaimed": {
     "benefits": {
@@ -5800,8 +5800,8 @@
       "cause": null
      }
     },
-    "latency_s": 169.97,
-    "tokens": 7571
+    "latency_s": 209.12,
+    "tokens": 8223
    },
    "baseline": {
     "benefits": {
@@ -5822,13 +5822,13 @@
      },
      "warm_home_discount": {
       "decision": "escalate",
-      "amount": 150.0,
+      "amount": 0.0,
       "citation_valid": true
      }
     },
-    "latency_s": 122.648,
-    "tokens": 6731,
-    "wall_s": 122.65
+    "latency_s": 121.41,
+    "tokens": 8148,
+    "wall_s": 121.42
    }
   },
   {
@@ -5903,17 +5903,17 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 3.73,
-    "tokens": 417
+    "latency_s": 1.67,
+    "tokens": 487
    },
    "unclaimed": {
     "benefits": {
      "pension_credit": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 58.0,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "lanes disagree"
+      "cause": null
      },
      "attendance_allowance": {
       "decision": "no",
@@ -5923,11 +5923,11 @@
       "cause": null
      },
      "council_tax_reduction": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 26.29,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "lanes disagree"
+      "cause": null
      },
      "warm_home_discount": {
       "decision": "no",
@@ -5937,8 +5937,8 @@
       "cause": null
      }
     },
-    "latency_s": 210.92,
-    "tokens": 9564
+    "latency_s": 146.7,
+    "tokens": 6412
    },
    "baseline": {
     "benefits": {
@@ -5954,7 +5954,7 @@
      },
      "council_tax_reduction": {
       "decision": "yes",
-      "amount": 35.06,
+      "amount": 26.29,
       "citation_valid": true
      },
      "warm_home_discount": {
@@ -5963,9 +5963,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 180.855,
-    "tokens": 7443,
-    "wall_s": 180.86
+    "latency_s": 107.837,
+    "tokens": 6925,
+    "wall_s": 107.84
    }
   },
   {
@@ -6042,8 +6042,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 4.03,
-    "tokens": 412
+    "latency_s": 1.47,
+    "tokens": 482
    },
    "unclaimed": {
     "benefits": {
@@ -6076,8 +6076,8 @@
       "cause": null
      }
     },
-    "latency_s": 62.01,
-    "tokens": 5235
+    "latency_s": 90.14,
+    "tokens": 5606
    },
    "baseline": {
     "benefits": {
@@ -6102,9 +6102,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 84.083,
-    "tokens": 6124,
-    "wall_s": 84.09
+    "latency_s": 88.958,
+    "tokens": 5327,
+    "wall_s": 88.96
    }
   },
   {
@@ -6181,8 +6181,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 5.84,
-    "tokens": 573
+    "latency_s": 2.03,
+    "tokens": 540
    },
    "unclaimed": {
     "benefits": {
@@ -6215,8 +6215,8 @@
       "cause": null
      }
     },
-    "latency_s": 129.42,
-    "tokens": 5228
+    "latency_s": 122.27,
+    "tokens": 6035
    },
    "baseline": {
     "benefits": {
@@ -6241,9 +6241,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 171.201,
-    "tokens": 8056,
-    "wall_s": 171.21
+    "latency_s": 265.062,
+    "tokens": 8215,
+    "wall_s": 265.06
    }
   },
   {
@@ -6299,11 +6299,11 @@
       "cause": "single lane (reasoning lane unavailable)"
      },
      "attendance_allowance": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "unavailable",
-      "cause": "deterministic lane UNKNOWN (missing)"
+      "cause": "single lane (reasoning lane unavailable)"
      },
      "council_tax_reduction": {
       "decision": "escalate",
@@ -6320,24 +6320,24 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 0.78,
-    "tokens": 328
+    "latency_s": 1.81,
+    "tokens": 484
    },
    "unclaimed": {
     "benefits": {
      "pension_credit": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "lanes disagree"
+      "cause": null
      },
      "attendance_allowance": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "deterministic lane UNKNOWN (missing)"
+      "cause": null
      },
      "council_tax_reduction": {
       "decision": "escalate",
@@ -6354,8 +6354,8 @@
       "cause": null
      }
     },
-    "latency_s": 87.97,
-    "tokens": 5710
+    "latency_s": 181.65,
+    "tokens": 6959
    },
    "baseline": {
     "benefits": {
@@ -6370,8 +6370,8 @@
       "citation_valid": true
      },
      "council_tax_reduction": {
-      "decision": "yes",
-      "amount": 19.03,
+      "decision": "escalate",
+      "amount": 0.0,
       "citation_valid": true
      },
      "warm_home_discount": {
@@ -6380,9 +6380,9 @@
       "citation_valid": true
      }
     },
-    "latency_s": 72.077,
-    "tokens": 5543,
-    "wall_s": 72.08
+    "latency_s": 113.804,
+    "tokens": 6171,
+    "wall_s": 113.81
    }
   },
   {
@@ -6459,8 +6459,8 @@
       "cause": "single lane (reasoning lane unavailable)"
      }
     },
-    "latency_s": 7.1,
-    "tokens": 430
+    "latency_s": 1.47,
+    "tokens": 504
    },
    "unclaimed": {
     "benefits": {
@@ -6493,8 +6493,8 @@
       "cause": null
      }
     },
-    "latency_s": 186.29,
-    "tokens": 9525
+    "latency_s": 152.18,
+    "tokens": 7061
    },
    "baseline": {
     "benefits": {
@@ -6514,14 +6514,14 @@
       "citation_valid": true
      },
      "warm_home_discount": {
-      "decision": "escalate",
-      "amount": null,
+      "decision": "yes",
+      "amount": 150.0,
       "citation_valid": true
      }
     },
-    "latency_s": 140.746,
-    "tokens": 7100,
-    "wall_s": 140.75
+    "latency_s": 134.411,
+    "tokens": 8213,
+    "wall_s": 134.42
    }
   },
   {
@@ -6577,11 +6577,11 @@
       "cause": "single lane (reasoning lane unavailable)"
      },
      "attendance_allowance": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "unavailable",
-      "cause": "deterministic lane UNKNOWN (missing)"
+      "cause": "single lane (reasoning lane unavailable)"
      },
      "council_tax_reduction": {
       "decision": "yes",
@@ -6598,8 +6598,8 @@
       "cause": "deterministic lane UNKNOWN (missing)"
      }
     },
-    "latency_s": 0.75,
-    "tokens": 327
+    "latency_s": 9.11,
+    "tokens": 483
    },
    "unclaimed": {
     "benefits": {
@@ -6611,11 +6611,11 @@
       "cause": null
      },
      "attendance_allowance": {
-      "decision": "escalate",
+      "decision": "no",
       "amount": null,
       "citation_valid": true,
       "lane_status": "ok",
-      "cause": "deterministic lane UNKNOWN (missing)"
+      "cause": null
      },
      "council_tax_reduction": {
       "decision": "yes",
@@ -6632,8 +6632,8 @@
       "cause": "deterministic lane UNKNOWN (missing)"
      }
     },
-    "latency_s": 134.0,
-    "tokens": 6334
+    "latency_s": 243.72,
+    "tokens": 7039
    },
    "baseline": {
     "benefits": {
@@ -6658,9 +6658,3059 @@
       "citation_valid": true
      }
     },
-    "latency_s": 76.909,
-    "tokens": 5847,
-    "wall_s": 76.91
+    "latency_s": 119.169,
+    "tokens": 6405,
+    "wall_s": 119.17
+   }
+  },
+  {
+   "id": "HH-049",
+   "name": "Kenneth Clarke",
+   "scenario": "missing",
+   "issues": [
+    "missing_council"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 27.06
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 27.06
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 20.71
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 27.06,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (missing)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 3.51,
+    "tokens": 482
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 27.06,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (missing)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 76.63,
+    "tokens": 6101
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 27.06,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": false
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": null,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 161.914,
+    "tokens": 7266,
+    "wall_s": 161.92
+   }
+  },
+  {
+   "id": "HH-050",
+   "name": "Mabel Clarke",
+   "scenario": "missing",
+   "issues": [
+    "care_duration_unknown",
+    "missing_capital"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 88.0
+    },
+    "attendance_allowance": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 24.63
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (missing)"
+     },
+     "attendance_allowance": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (missing)"
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (missing)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 2.12,
+    "tokens": 500
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (missing)"
+     },
+     "attendance_allowance": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (missing)"
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (missing)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 105.97,
+    "tokens": 6131
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "escalate",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 168.426,
+    "tokens": 8839,
+    "wall_s": 170.5
+   }
+  },
+  {
+   "id": "HH-051",
+   "name": "Ernest Begum",
+   "scenario": "conflict",
+   "issues": [
+    "conflict_income"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 28.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 20.74
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 2.14,
+    "tokens": 536
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 172.16,
+    "tokens": 7589
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 28.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 27.65,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "yes",
+      "amount": 150.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 75.791,
+    "tokens": 7077,
+    "wall_s": 75.79
+   }
+  },
+  {
+   "id": "HH-052",
+   "name": "Bernard Morgan",
+   "scenario": "conflict",
+   "issues": [
+    "conflict_income"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 53.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 32.74
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 1.5,
+    "tokens": 482
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 170.29,
+    "tokens": 7715
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 53.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 43.65,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 192.624,
+    "tokens": 8852,
+    "wall_s": 198.77
+   }
+  },
+  {
+   "id": "HH-053",
+   "name": "Carol Fraser",
+   "scenario": "conflict",
+   "issues": [
+    "conflict_savings"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 48.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 32.37
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 13.22,
+    "tokens": 565
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 198.38,
+    "tokens": 9702
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 42.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 43.16,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "yes",
+      "amount": 150.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 124.95,
+    "tokens": 7532,
+    "wall_s": 124.95
+   }
+  },
+  {
+   "id": "HH-054",
+   "name": "Kwame Ahmed",
+   "scenario": "conflict",
+   "issues": [
+    "conflict_savings"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 33.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 32.66
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 2.79,
+    "tokens": 625
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 163.36,
+    "tokens": 8774
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 31.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 43.54,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": 0.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 195.95,
+    "tokens": 7640,
+    "wall_s": 195.95
+   }
+  },
+  {
+   "id": "HH-055",
+   "name": "Rajesh Quinn",
+   "scenario": "conflict",
+   "issues": [
+    "conflict_partner"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 63.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 24.79
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 1.42,
+    "tokens": 505
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "lanes disagree"
+     }
+    },
+    "latency_s": 246.73,
+    "tokens": 9303
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": false
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": false
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": false
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 132.304,
+    "tokens": 6769,
+    "wall_s": 132.31
+   }
+  },
+  {
+   "id": "HH-056",
+   "name": "Geoffrey Thomas",
+   "scenario": "conflict",
+   "issues": [
+    "conflict_elec"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 88.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 25.98
+    },
+    "warm_home_discount": {
+     "decision": "escalate",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 88.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 25.98
+    },
+    "warm_home_discount": {
+     "decision": "yes",
+     "amount": 150.0
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 88.0,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 25.98,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     }
+    },
+    "latency_s": 2.64,
+    "tokens": 539
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 88.0,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 25.98,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     }
+    },
+    "latency_s": 201.08,
+    "tokens": 6923
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 88.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 34.65,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "yes",
+      "amount": 150.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 130.894,
+    "tokens": 6784,
+    "wall_s": 130.9
+   }
+  },
+  {
+   "id": "HH-057",
+   "name": "Mabel Hughes",
+   "scenario": "conflict",
+   "issues": [
+    "conflict_elec"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 68.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 20.58
+    },
+    "warm_home_discount": {
+     "decision": "escalate",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 68.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 20.58
+    },
+    "warm_home_discount": {
+     "decision": "yes",
+     "amount": 150.0
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 68.0,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 20.58,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     }
+    },
+    "latency_s": 3.64,
+    "tokens": 536
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 68.0,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 20.58,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (conflict)"
+     }
+    },
+    "latency_s": 132.01,
+    "tokens": 7549
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 68.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 20.58,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "yes",
+      "amount": 150.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 147.528,
+    "tokens": 6849,
+    "wall_s": 147.53
+   }
+  },
+  {
+   "id": "HH-058",
+   "name": "Victor Nowak",
+   "scenario": "stale",
+   "issues": [
+    "stale_dwp_pension"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 48.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 19.56
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (stale)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (stale)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 1.85,
+    "tokens": 479
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (stale)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (stale)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 144.03,
+    "tokens": 6236
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 143.05,
+    "tokens": 8083,
+    "wall_s": 143.05
+   }
+  },
+  {
+   "id": "HH-059",
+   "name": "Dilys Doyle",
+   "scenario": "stale",
+   "issues": [
+    "stale_dwp_pension"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 46.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 23.1
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (stale)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (stale)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 1.92,
+    "tokens": 487
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (stale)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (stale)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 146.26,
+    "tokens": 6405
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 46.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 30.8,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": 0.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 201.132,
+    "tokens": 8122,
+    "wall_s": 201.14
+   }
+  },
+  {
+   "id": "HH-060",
+   "name": "Gordon Thomas",
+   "scenario": "stale",
+   "issues": [
+    "stale_dwp_pension_fresh_housing"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 43.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 20.22
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 43.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 20.22
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 43.0,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 20.22,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 3.15,
+    "tokens": 535
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 43.0,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 20.22,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 152.33,
+    "tokens": 8538
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 43.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 26.95,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": 0.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 121.237,
+    "tokens": 7008,
+    "wall_s": 425.34
+   }
+  },
+  {
+   "id": "HH-061",
+   "name": "Percy Evans",
+   "scenario": "stale",
+   "issues": [
+    "stale_housing_income"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 60.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 29.51
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 60.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 29.51
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 60.0,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 29.51,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 1.81,
+    "tokens": 486
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 60.0,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 29.51,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 110.26,
+    "tokens": 5947
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 60.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 29.51,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": 0.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 92.713,
+    "tokens": 6309,
+    "wall_s": 92.72
+   }
+  },
+  {
+   "id": "HH-062",
+   "name": "Patrick Fletcher",
+   "scenario": "stale",
+   "issues": [
+    "stale_dwp_pension"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "no",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 20.57
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (stale)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (stale)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 8.74,
+    "tokens": 478
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (stale)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (stale)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 112.49,
+    "tokens": 6417
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 30.89,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": 0.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 152.59,
+    "tokens": 7835,
+    "wall_s": 152.59
+   }
+  },
+  {
+   "id": "HH-063",
+   "name": "Frank Fletcher",
+   "scenario": "id_mismatch",
+   "issues": [
+    "housing_name_variant"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 56.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 24.68
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 56.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 24.68
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 56.0,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 24.68,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 2.33,
+    "tokens": 531
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 56.0,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 24.68,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 146.53,
+    "tokens": 7803
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 56.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 32.91,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": 0.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 126.643,
+    "tokens": 7984,
+    "wall_s": 157.09
+   }
+  },
+  {
+   "id": "HH-064",
+   "name": "Ivor Bennett",
+   "scenario": "id_mismatch",
+   "issues": [
+    "housing_name_variant"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 62.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 23.9
+    },
+    "warm_home_discount": {
+     "decision": "yes",
+     "amount": 150.0
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 62.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 23.9
+    },
+    "warm_home_discount": {
+     "decision": "yes",
+     "amount": 150.0
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 62.0,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 23.9,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "warm_home_discount": {
+      "decision": "yes",
+      "amount": 150.0,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 1.92,
+    "tokens": 483
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 62.0,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 23.9,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "warm_home_discount": {
+      "decision": "yes",
+      "amount": 150.0,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 137.81,
+    "tokens": 6364
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 62.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 23.9,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "yes",
+      "amount": 150.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 185.641,
+    "tokens": 7787,
+    "wall_s": 185.64
+   }
+  },
+  {
+   "id": "HH-065",
+   "name": "Beryl Underwood",
+   "scenario": "id_mismatch",
+   "issues": [
+    "housing_unlinkable",
+    "missing_dwp_pension"
+   ],
+   "expected": {
+    "pension_credit": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "escalate",
+     "amount": null
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 50.0
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 22.99
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (missing)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "deterministic lane UNKNOWN (missing)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 1.8,
+    "tokens": 484
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (missing)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": "deterministic lane UNKNOWN (missing)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 127.99,
+    "tokens": 6026
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 84.64,
+    "tokens": 6032,
+    "wall_s": 84.64
+   }
+  },
+  {
+   "id": "HH-066",
+   "name": "Agnes Iqbal",
+   "scenario": "clear_eligible",
+   "issues": [],
+   "expected": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 54.04
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 19.8
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 54.04
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 19.8
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 54.04,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 19.8,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 2.13,
+    "tokens": 537
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 54.04,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 19.8,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 197.33,
+    "tokens": 6958
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 54.04,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 26.4,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 129.491,
+    "tokens": 7050,
+    "wall_s": 131.56
+   }
+  },
+  {
+   "id": "HH-067",
+   "name": "Florence Morgan",
+   "scenario": "clear_eligible",
+   "issues": [],
+   "expected": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 69.74
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 30.74
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 69.74
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 30.74
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 69.74,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 30.74,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 11.87,
+    "tokens": 547
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 69.74,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 30.74,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 188.36,
+    "tokens": 7698
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 69.74,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 30.74,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": 0.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 139.58,
+    "tokens": 7446,
+    "wall_s": 139.58
+   }
+  },
+  {
+   "id": "HH-068",
+   "name": "Lilian Khan",
+   "scenario": "clear_eligible",
+   "issues": [],
+   "expected": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 62.78
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 25.06
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "yes",
+     "amount": 62.78
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 25.06
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 62.78,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 25.06,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 2.67,
+    "tokens": 483
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 62.78,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 25.06,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 100.78,
+    "tokens": 7468
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "yes",
+      "amount": 62.78,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 25.06,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "yes",
+      "amount": 150.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 140.292,
+    "tokens": 6685,
+    "wall_s": 140.3
+   }
+  },
+  {
+   "id": "HH-069",
+   "name": "Elsie Ellis",
+   "scenario": "clear_ineligible",
+   "issues": [],
+   "expected": {
+    "pension_credit": {
+     "decision": "no",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 10.99
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "no",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 10.99
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 10.99,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 4.03,
+    "tokens": 598
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 10.99,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 218.95,
+    "tokens": 8714
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 10.99,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 100.602,
+    "tokens": 7812,
+    "wall_s": 100.61
+   }
+  },
+  {
+   "id": "HH-070",
+   "name": "Dilys Roberts",
+   "scenario": "clear_ineligible",
+   "issues": [],
+   "expected": {
+    "pension_credit": {
+     "decision": "no",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 20.96
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "truth": {
+    "pension_credit": {
+     "decision": "no",
+     "amount": null
+    },
+    "attendance_allowance": {
+     "decision": "no",
+     "amount": null
+    },
+    "council_tax_reduction": {
+     "decision": "yes",
+     "amount": 20.96
+    },
+    "warm_home_discount": {
+     "decision": "no",
+     "amount": null
+    }
+   },
+   "deterministic": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 20.96,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "unavailable",
+      "cause": "single lane (reasoning lane unavailable)"
+     }
+    },
+    "latency_s": 2.74,
+    "tokens": 549
+   },
+   "unclaimed": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 20.96,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     },
+     "warm_home_discount": {
+      "decision": "no",
+      "amount": null,
+      "citation_valid": true,
+      "lane_status": "ok",
+      "cause": null
+     }
+    },
+    "latency_s": 107.93,
+    "tokens": 7539
+   },
+   "baseline": {
+    "benefits": {
+     "pension_credit": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "attendance_allowance": {
+      "decision": "no",
+      "amount": 0.0,
+      "citation_valid": true
+     },
+     "council_tax_reduction": {
+      "decision": "yes",
+      "amount": 30.83,
+      "citation_valid": true
+     },
+     "warm_home_discount": {
+      "decision": "escalate",
+      "amount": null,
+      "citation_valid": true
+     }
+    },
+    "latency_s": 202.559,
+    "tokens": 8092,
+    "wall_s": 202.56
    }
   }
  ]
