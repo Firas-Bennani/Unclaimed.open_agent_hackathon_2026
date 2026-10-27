@@ -46,6 +46,7 @@ SYSTEM = """You maintain a benefit rule written in a JSON DSL. A caseworker says
 Propose the smallest JSON-Patch ("replace" ops only, RFC 6901 paths into the rule JSON) that fixes the rule so it matches
 the policy. Only change what the caseworker's evidence justifies; never loosen unrelated conditions. Update the text of
 any clause whose figures you change, and set a new version string.
+Every path must already exist in the rule JSON shown (in an "if" expression, "if", "then" and "else" are sibling keys).
 Return JSON: {"rationale": "...", "ops": [{"op":"replace","path":"/...","value":...}], "new_version": "..."}"""
 
 
@@ -125,8 +126,17 @@ def propose_and_gate(household_id: str, benefit: str, expected: str, explanation
     patch_id = uuid.uuid4().hex[:10]
     record: dict = {"id": patch_id, "benefit": benefit, "household_id": household_id, "correction_id": correction["id"],
                     "from_version": rule.version, "explanation": explanation, "expected": expected}
+    def check(p: PatchProposal) -> list[str]:
+        """Apply/validation errors are fed back to the model (bounded repair loop, as in the compiler)."""
+        try:
+            candidate = _apply(rule_json, p.ops)
+            candidate["version"] = p.new_version
+            return validate_rule(Rule.model_validate(candidate))
+        except Exception as e:  # bad path, wrong type, schema violation
+            return [f"patch cannot be applied: {type(e).__name__}: {e}"]
+
     try:
-        proposal, meta = llm.chat_json(settings.reasoning_model, SYSTEM, user, PatchProposal, max_tokens=3000)
+        proposal, meta = llm.chat_json(settings.reasoning_model, SYSTEM, user, PatchProposal, validate=check, max_tokens=6000)
         record["llm"] = {"model": meta.model, "source": meta.source, "tokens": meta.prompt_tokens + meta.completion_tokens}
     except (llm.LLMUnavailable, ValueError) as e:
         record.update(status="failed", reason=f"could not get a patch proposal: {e}"[:300])
