@@ -1,0 +1,8 @@
+[
+  {"name": "on pension credit, bill in name", "facts": {"country": "England", "receives_qualifying_benefit_on_whd_date": true, "electricity_bill_in_name": true}, "expected_status": "TRUE", "expected_amount": 150},
+  {"name": "no qualifying benefit", "facts": {"country": "England", "receives_qualifying_benefit_on_whd_date": false, "electricity_bill_in_name": true}, "expected_status": "FALSE"},
+  {"name": "bill not in name", "facts": {"country": "Wales", "receives_qualifying_benefit_on_whd_date": true, "electricity_bill_in_name": false}, "expected_status": "FALSE"},
+  {"name": "scotland", "facts": {"country": "Scotland", "receives_qualifying_benefit_on_whd_date": true, "electricity_bill_in_name": true}, "expected_status": "FALSE"},
+  {"name": "bill unknown", "facts": {"country": "England", "receives_qualifying_benefit_on_whd_date": true, "electricity_bill_in_name": null}, "expected_status": "UNKNOWN"},
+  {"name": "bill unknown but no benefit", "facts": {"country": "England", "receives_qualifying_benefit_on_whd_date": false, "electricity_bill_in_name": null}, "expected_status": "FALSE"}
+]

@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: unclaimed
+      POSTGRES_PASSWORD: unclaimed
+      POSTGRES_DB: dwp
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U unclaimed -d dwp"]
+      interval: 3s
+      retries: 20
+
+  council-api:
+    build: .
+    command: uvicorn unclaimed.mock_council:app --host 0.0.0.0 --port 8100
+    ports: ["8100:8100"]
+
+  app:
+    build: .
+    env_file: .env
+    environment:
+      DWP_DB_URL: postgresql+psycopg://unclaimed:unclaimed@postgres:5432/dwp
+      COUNCIL_API_URL: http://council-api:8100
+      LLM_MODE: ${LLM_MODE:-replay}
+    command: >
+      sh -c "python /app/scripts/load_postgres.py postgresql+psycopg://unclaimed:unclaimed@postgres:5432/dwp &&
+             uvicorn unclaimed.api:app --host 0.0.0.0 --port 8000"
+    ports: ["8000:8000"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      council-api: { condition: service_started }
