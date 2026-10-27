@@ -7,3 +7,4 @@ dist/
 *.db
 .pytest_cache/
 frontend/test-results/
+docs/demo_server.log

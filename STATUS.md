@@ -1,29 +1,20 @@
 # STATUS — Unclaimed
 
-_Last update: 2026-10-27 12:55 UTC · paused at Firas's request_
+_Last update: 2026-10-27 17:30 UTC · READY_
 
 ## Done
-- Repo, .gitignore (.env), NEEDS_FIRAS.md, DECISIONS.md
-- Nemotron key verified: `nemotron-3-ultra-550b-a55b` (reasoning, compiler, patches), `nemotron-3.5-lightning-30b-a3b` (notes extraction, thinking off)
-- Backend: Nemotron client (throttle, backoff, 420s timeout, schema repair, record/replay cache, thinking toggle), DSL + Kleene evaluator, fact graph (conflicts / staleness / caseworker overrides), 4 sources + local federated harness, reasoning lane with citation validation, arbiter, SQLite memory, learning loop + regression gate, actions (drafts, decision record), FastAPI
-- All 4 rules compiled by Nemotron and passing the hand-written examples. Examples are part of the compiler's repair loop (see `rules/compiled/COMPILE_LOG.txt`).
-- Synthetic data: 70 households, 13 scenarios, Maria = HH-001. Independent reference implementation + hand labels (1 disagreement found and resolved, logged).
-- 40 pytest tests green (offline / replay mode)
-- Maria verified live: ✅ PC £187.85/mo · ⚠️ AA (asks for months of care) · ✅ CTR £95.33/mo · ❌ WHD. Both lanes agree.
-- Frontend complete (dashboard, household + Why? + answer box + Correct this + drafts, trace, evaluation, rules & learning); `npm run build` clean
-- Drafts: README (eval section pending), docs/DEMO_SCRIPT.md, docs/SUBMISSION.md, scripts (demo.py/.ps1, rehearse.py, test.ps1, eval.ps1), Makefile, docker-compose, Dockerfile
+- Backend: Nemotron client (throttle, backoff, schema repair, record/replay cache, thinking toggle), Rule DSL + Kleene evaluator, Nemotron rule compiler (examples in the repair loop), data harness over 4 sources, fact graph (conflicts / staleness / caseworker overrides), reasoning lane with citation validation, arbiter, SQLite memory, learning loop (Nemotron patch with a bounded repair loop + regression gate), actions, FastAPI.
+- Frontend: dashboard, household view (Why? drawer, answer box, Correct this, drafts), trace, evaluation, rules & learning.
+- **Evaluation (run 3, final, all 70 households on one code version):** Unclaimed 98.4% accuracy on decidable cases, 0 wrong "yes", 0 wrong "no", 100% escalation recall, 88.9% escalation precision, coverage 87.1%, selective accuracy 100%. Standard agent: 79.4%, 21 wrong "yes", 62.5% recall. The deterministic lane alone scores 100%, explained honestly in README and EVAL.md. Runs 1–2 are kept in `eval/` with the bugs they exposed (see DECISIONS.md).
+- **Demo:** rehearsal recorded (`docs/rehearsal.log`). Offline replay verified end to end: all 280 decisions have the reasoning lane served from cache, Maria's answer replays, the HH-036 patch replays (accepted, 77/81 → 80/81, 0 regressions). Screenshots in `docs/screenshots/` (dashboard, household, household_why, trace, evaluation, learning, rules). DEMO_SCRIPT figures updated.
+- **Docker:** `docker compose -p unclaimed up --build` verified at 17:25 UTC. Postgres (DWP source), separate council-api container (REST), app on :8000 in replay mode, UI 200, Maria correct. Then shut down with `docker compose -p unclaimed down`. Other containers on the machine were not touched.
+- Tests: 43 passed. GitHub: https://github.com/Firas-Bennani/Unclaimed.open_agent_hackathon_2026 (single author: Firas Bennani).
 
-## Where I stopped
-- **Evaluation run in progress** (`python eval/run.py --workers 6`, LLM_CONCURRENCY=6, log in `eval/run.log`): 30/70 households done at 12:54 UTC, about 1 per minute. When it finishes it writes `eval/results.json` and `EVAL.md`.
-  - **Update:** Claude Code stopped the run because the system was critically low on memory while the session was idle. No results.json was written yet. Every completed Nemotron call is cached, so rerunning `LLM_CONCURRENCY=6 python eval/run.py --workers 6` resumes from about 30/70. Not restarted: waiting for Firas.
+## Firas TODO (human-only)
+1. Record the video following `docs/DEMO_SCRIPT.md`. Start with `powershell -File scripts/demo.ps1`, then open http://localhost:8000.
+2. Paste `docs/SUBMISSION.md` into the hackathon form.
+3. Optional: Zetaris / Gaia credentials (see NEEDS_FIRAS.md). Both run on honest local fallbacks.
 
-## Next (in order)
-1. Once the eval finishes: read `EVAL.md`, fill `<!-- EVAL -->` in README and `<!-- EVAL_HEADLINE -->` in docs/SUBMISSION.md with the real numbers, commit.
-2. `python scripts/rehearse.py` (live) to record the demo's Nemotron responses: demo reset with the 2025-26 PC pack, Maria's AA answer, the HH-036 rule patch, Maria re-assessed. Then update the figures in DEMO_SCRIPT.md (under the 2025-26 pack Maria's PC shows a lower amount until the patch).
-3. `scripts/demo.ps1` → verify replay end to end → `python frontend/scripts/screenshots.py` → check the screenshots → add them to README.
-4. Final test pass, commit, push (needs a GitHub repo: see NEEDS_FIRAS.md), handoff message.
-
-## Risks
-- Free-tier latency/5xx (handled by backoff). Eval ~70 min total; rehearsal ~70 more reasoning calls.
-- Docker Desktop not starting → no-Docker path is primary.
-- Zetaris / Gaia: fallbacks only (no credentials/API), stated honestly.
+## Known limitations
+- Zetaris and Meterless Gaia: interface + local fallback only (no credentials / public API).
+- Rules simplified (see README). Scottish CTR and partner benefits for WHD are not modelled. Nemotron flags these, and they account for the 4 unnecessary escalations.
