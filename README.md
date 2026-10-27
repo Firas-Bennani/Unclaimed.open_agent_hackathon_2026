@@ -28,7 +28,16 @@ For each household, Unclaimed:
 
 > *"Unclaimed helps caseworkers find benefits households are entitled to. It makes decisions it can prove, refuses to guess when evidence is missing, and gets better with every correction — and we measured it against a standard AI agent."*
 
-<!-- SCREENSHOTS -->
+## Screenshots
+
+| Caseload dashboard | Maria: proven decisions + one question |
+|---|---|
+| ![Dashboard](docs/screenshots/dashboard.png) | ![Household](docs/screenshots/household.png) |
+| **Trace: sources → fact graph → two lanes → arbiter** | **Learning loop: Nemotron rule patch through the regression gate** |
+| ![Trace](docs/screenshots/trace.png) | ![Learning](docs/screenshots/learning.png) |
+
+![Evaluation](docs/screenshots/evaluation.png)
+
 
 ## Architecture
 

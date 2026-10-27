@@ -16,7 +16,7 @@ Type the inputs below exactly as written. The replay cache was recorded with the
 
 > "Every year, billions in pension top-ups, disability and council-tax support go unclaimed. The rules are scattered across documents, the facts sit in separate systems, and caseworkers check by hand. Unclaimed is for the welfare-rights caseworker. Here are 70 synthetic households, checked against four UK schemes, and the money we found per month."
 
-Point at the **£/month found** tile and the **Needs info** count.
+Point at the **£/month found** tile (≈ £14,042/month after a reset) and the **Needs info** count.
 
 ## 2 · Maria (0:20–1:20) — Household view
 
@@ -24,7 +24,7 @@ Point at the **£/month found** tile and the **Needs info** count.
 
 > "Maria is 67, lives alone, rents, small pension. Four schemes, four different answers."
 
-- **Pension Credit ✅ £187.85/month.** Click **Why?**
+- **Pension Credit ✅ £140.62/month** (£32.45/week). The header shows *rules Pension 2025-26*: the demo starts on last year's rate pack. Click **Why?**
   > "Every result is proven. Here's the GOV.UK clause, with its link, and here are the exact records: DWP pension record, as of April 2026. Notice the housing export said £191, but that record is from 2024, so it was flagged out of date and ignored."
 - **Council Tax Reduction ✅ £95.33/month.**
   > "Council tax: the account came from the council's REST API, single-person discount applied."
@@ -37,7 +37,7 @@ Point at the **£/month found** tile and the **Needs info** count.
 
 **Type in the Attendance Allowance answer box:** months = `7`, note = `Daughter has helped her wash and dress since March 2026` → **Save answer**.
 
-> "The answer is stored in memory with caseworker provenance, and the case re-runs. Attendance Allowance flips to eligible, at least £76.70 a week. Maria's total goes up."
+> "The answer is stored in memory with caseworker provenance, and the case re-runs. Attendance Allowance flips to eligible: £332.37 a month (at least the £76.70/week lower rate). Maria's total goes from £235.95 to £568.32 a month."
 
 **Go back** (← All households) → search `HH-036` → open **Hilda Ellis**. Pension Credit shows ❌ (income £237.99/week, rule pack 2025-26).
 
@@ -47,9 +47,13 @@ Point at the **£/month found** tile and the **Needs info** count.
 
 → **Propose rule patch**.
 
-> "A decision correction becomes a rule patch. Nemotron proposes the smallest change, the new 2026-27 rate, and it's only accepted if the full regression suite passes: every labelled household plus the rule examples. Zero regressions, cases fixed: accepted. Hilda now gets Pension Credit."
+> "A decision correction becomes a rule patch. Nemotron proposes the smallest change, the new 2026-27 single rate. It's only accepted if the full regression suite passes: 70 labelled households plus the rule examples. Before 77 of 81, after 80 of 81, zero regressions, three cases fixed: accepted. Hilda is now eligible. It's only pennies a week, but Pension Credit of any amount unlocks other help. And notice Nemotron left the couple rate alone because it had no evidence for it. The remaining failing example is exactly that: the next correction."
 
-Point at **Regression gate** (before → after, regressions 0) and **Proposed changes**.
+Wait about 5 seconds for the patch result.
+
+Point at **Regression gate** (77/81 → 80/81, regressions 0, fixed 3) and **Proposed changes**.
+
+Optional (5 s): go back to Maria → **Re-assess**. Pension Credit now uses the patched 2026-27 rate: **£187.85/month**.
 
 ## 4 · Trace view (2:00–2:20)
 
@@ -61,9 +65,7 @@ Point at **Regression gate** (before → after, regressions 0) and **Proposed ch
 
 **Click:** **Evaluation** in the nav.
 
-> "We measured it. Same Nemotron model, given the raw data and the policy: that's a standard agent. Look at the wrong yes's, the errors that create overpayment debt, and escalation recall: knowing when not to answer."
-
-Read the two headline numbers from the table (they are in EVAL.md).
+> "We measured it on 280 decisions. The same Nemotron model, given the raw data and the policy, is the standard agent: 21 wrong yes's, the errors that create overpayment debt, and it missed over a third of the cases that needed a human. Unclaimed: zero wrong decisions, and it escalated every case that needed it. To be honest, the rule engine alone also scores perfectly here. The Nemotron lane is our independent cross-check against mis-compiled rules and mis-read notes."
 
 ## 6 · Pitch (2:40–2:50)
 
