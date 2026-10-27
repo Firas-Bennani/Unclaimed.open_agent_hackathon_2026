@@ -1,8 +1,31 @@
 C:\Users\FIRAS\anaconda3\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
   from starlette.testclient import TestClient as TestClient  # noqa
-{"t":"2026-10-27 14:11:26,466","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 503 (attempt 1), backing off 2s"}
-{"t":"2026-10-27 14:13:03,789","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 503 (attempt 1), backing off 2s"}
-{"t":"2026-10-27 14:15:40,336","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 503 (attempt 1), backing off 2s"}
-{"t":"2026-10-27 14:15:42,681","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 503 (attempt 2), backing off 4s"}
-{"t":"2026-10-27 14:44:23,678","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
-{"t":"2026-10-27 14:51:28,448","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 15:06:01,124","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 15:06:03,471","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 503 (attempt 2), backing off 4s"}
+{"t":"2026-10-27 15:06:07,536","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 3), backing off 8s"}
+{"t":"2026-10-27 15:06:15,713","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 4), backing off 16s"}
+{"t":"2026-10-27 15:09:16,661","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 15:09:18,728","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 2), backing off 4s"}
+{"t":"2026-10-27 15:11:33,949","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 504 (attempt 5), backing off 32s"}
+{"t":"2026-10-27 15:11:52,672","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 15:21:02,714","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 15:23:12,670","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 15:24:55,691","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 15:32:49,614","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 15:33:30,866","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 15:33:32,934","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 2), backing off 4s"}
+{"t":"2026-10-27 15:33:37,130","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 3), backing off 8s"}
+{"t":"2026-10-27 15:33:45,355","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 4), backing off 16s"}
+{"t":"2026-10-27 15:34:01,564","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 5), backing off 32s"}
+{"t":"2026-10-27 15:40:46,402","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 15:45:18,578","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 15:51:26,984","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 15:53:28,623","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 16:08:59,870","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 16:19:06,040","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+{"t":"2026-10-27 16:23:44,850","lvl":"WARNING","log":"unclaimed.llm","msg":"nemotron transient error 429 (attempt 1), backing off 2s"}
+reset: 70 assessed, £14,042.26/month
+Maria answer changes: [{'benefit': 'attendance_allowance', 'from': 'needs_info', 'to': 'eligible', 'from_amount': None, 'to_amount': 332.37}]
+patch: rejected patch does not produce a valid rule: 'else' None [{'op': 'replace', 'path': '/derived/2/expr/if/else/const', 'value': 238.0}, {'op': 'replace', 'path': '/clauses/3/text', 'value': 'Guarantee Credit tops up weekly income to £238.00 (single) or £346.60 (couple); eligible if assessed income below threshold.'}, {'op': 'replace', 'path': '/version', 'value': '2026-27'}]
+changes: []
+Maria after patch: {'pension_credit': ('eligible', 140.62), 'attendance_allowance': ('eligible', 332.37), 'council_tax_reduction': ('eligible', 95.33), 'warm_home_discount': ('not_eligible', None)}

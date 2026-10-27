@@ -80,7 +80,28 @@ flowchart TB
 
 The UI header always shows which backend is live.
 
-<!-- EVAL -->
+## Evaluation: Unclaimed vs a standard AI agent
+
+70 synthetic households × 4 benefits = **280 decisions** (248 decidable from the available evidence, 32 that should be escalated). Ground truth comes from an independent plain-Python reference implementation of the policy text (`eval/reference.py`) plus hand-labelled escalations. The baseline is the **same Nemotron model** given the policy text and every raw record. Full details, definitions and every disagreement: [EVAL.md](EVAL.md). All numbers come from real runs (`eval/results.json`).
+
+| Metric | Standard agent (Nemotron + raw data) | **Unclaimed** | Deterministic lane only (ablation) |
+|---|---|---|---|
+| Accuracy on decidable cases | 79.4% | **98.4%** | 100.0% |
+| Wrong "yes" (overpayment risk) | 21 (7.5%) | **0** | 0 |
+| Wrong "no" | 0 | **0** | 0 |
+| Escalation recall (asks when evidence is missing) | 62.5% | **100%** | 100% |
+| Escalation precision | 32.3% | **88.9%** | 100% |
+| Coverage (decisions made) | 77.9% | **87.1%** | 88.6% |
+| Selective accuracy (correct among decisions made) | 90.4% | **100%** | 100% |
+| Amount within £0.50 | 77.2% | **100%** | 100% |
+| Citation validity | 98.9% | **100%** | 100% |
+| Latency / tokens per household | 155 s / 7.4k | 144 s / 7.2k | 3.4 s / 0.5k |
+
+**Reading this honestly:**
+- **Against the standard agent:** the same model, given the same data, gave **21 wrong "yes"** answers, missed 37.5% of the cases that needed a human, and got 23% of amounts wrong. Unclaimed made **zero wrong decisions**: every case it decided was right, and it escalated every case that needed escalating.
+- **Why the deterministic lane alone scores 100%:** the labels come from a reference implementation of the same simplified policy, and on this synthetic set both the Nemotron-compiled rules and the notes extraction turned out correct. So on this set the rule engine can't be beaten. The Nemotron reasoning lane is an **independent cross-check against rule-compilation and extraction errors**. This test set contains none, so here it only adds escalations: 4 unnecessary ones, 3 of them Nemotron fairly pointing out that Scotland's CTR scheme isn't modelled. We keep the second lane because real rules get mis-compiled and real notes get mis-read. We have not shown that benefit on this test set.
+- Two earlier runs exposed real bugs (negative statements dropped by extraction; over-strict staleness). They were fixed with general policies applied equally to the baseline, and everything was re-scored on one code version. See the run history in [EVAL.md](EVAL.md).
+
 
 ## Run it
 

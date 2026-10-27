@@ -23,7 +23,10 @@ Unclaimed is a reasoning architecture for caseworkers that turns scattered data 
 Every ✅/❌ links to the GOV.UK clause and the exact source records (system, record id, field, value, date).
 
 ## Results (real runs, `EVAL.md`)
-<!-- EVAL_HEADLINE -->
+On 70 synthetic households (280 benefit decisions), scored against an independent reference implementation:
+- **Unclaimed:** 98.4% accuracy on decidable cases, **0 wrong "yes"**, 0 wrong "no", **100% escalation recall**, 100% selective accuracy (every decision it made was right), 100% citation validity, amounts 100% within £0.50.
+- **Standard agent** (the same Nemotron model given the policy text and all raw records): 79.4% accuracy, **21 wrong "yes"** (7.5% of decisions, i.e. overpayment risk), 62.5% escalation recall, 77.2% of amounts right.
+- Honest note: the deterministic lane alone scores 100% on this set. The Nemotron reasoning lane is an independent cross-check against rule-compilation and extraction errors, and on this set it only adds 4 cautious escalations.
 
 ## Sponsor technology
 - **NVIDIA Nemotron (live):** `nemotron-3-ultra-550b-a55b` compiles the rules, runs the reasoning lane and proposes rule patches. `nemotron-3.5-lightning-30b-a3b` (thinking off) extracts facts from notes. All calls go through a throttled client with backoff, schema repair and a record/replay cache, which also powers Demo mode.

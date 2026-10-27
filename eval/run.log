@@ -1,143 +1,155 @@
 C:\Users\FIRAS\anaconda3\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
   from starlette.testclient import TestClient as TestClient  # noqa
-nemotron transient error 503 (attempt 1), backing off 2s
-nemotron transient error 503 (attempt 1), backing off 2s
-HH-002 done (1/70)
-HH-005 done (2/70)
-HH-003 done (3/70)
+HH-001 done (1/70)
+HH-003 done (2/70)
+HH-002 done (3/70)
 HH-004 done (4/70)
-nemotron transient error 503 (attempt 1), backing off 2s
-HH-006 done (5/70)
-HH-007 done (6/70)
-nemotron transient error 503 (attempt 1), backing off 2s
-HH-001 done (7/70)
-HH-008 done (8/70)
-HH-010 done (9/70)
+HH-005 done (5/70)
+HH-006 done (6/70)
+HH-008 done (7/70)
+HH-010 done (8/70)
+HH-007 done (9/70)
 HH-009 done (10/70)
 HH-011 done (11/70)
 HH-012 done (12/70)
-HH-013 done (13/70)
-HH-017 done (14/70)
-HH-014 done (15/70)
+nemotron transient error 429 (attempt 1), backing off 2s
+HH-014 done (13/70)
+HH-013 done (14/70)
+nemotron transient error 429 (attempt 1), backing off 2s
+HH-015 done (15/70)
+nemotron transient error 429 (attempt 1), backing off 2s
 HH-016 done (16/70)
-HH-015 done (17/70)
-HH-019 done (18/70)
-HH-018 done (19/70)
+HH-017 done (17/70)
+HH-018 done (18/70)
+nemotron transient error 429 (attempt 1), backing off 2s
+HH-019 done (19/70)
 HH-020 done (20/70)
 HH-021 done (21/70)
 HH-022 done (22/70)
-HH-024 done (23/70)
-HH-023 done (24/70)
-HH-025 done (25/70)
-HH-027 done (26/70)
-HH-026 done (27/70)
-HH-029 done (28/70)
-HH-031 done (29/70)
-HH-030 done (30/70)
-HH-028 done (31/70)
-HH-034 done (32/70)
-HH-035 done (33/70)
-HH-032 done (34/70)
-HH-037 done (35/70)
-HH-036 done (36/70)
 nemotron transient error 503 (attempt 1), backing off 2s
-HH-033 done (37/70)
-HH-038 done (38/70)
-HH-040 done (39/70)
-HH-039 done (40/70)
-HH-043 done (41/70)
-HH-042 done (42/70)
-HH-041 done (43/70)
-HH-044 done (44/70)
+HH-023 done (23/70)
 nemotron transient error 429 (attempt 1), backing off 2s
+HH-024 done (24/70)
+HH-027 done (25/70)
+nemotron transient error 504 (attempt 2), backing off 4s
+HH-025 done (26/70)
+HH-028 done (27/70)
+nemotron transient error 429 (attempt 1), backing off 2s
+HH-029 done (28/70)
+HH-026 done (29/70)
+HH-031 done (30/70)
+nemotron transient error 429 (attempt 1), backing off 2s
+HH-030 done (31/70)
+HH-032 done (32/70)
+HH-033 done (33/70)
+nemotron transient error 429 (attempt 1), backing off 2s
+HH-035 done (34/70)
+HH-034 done (35/70)
+nemotron transient error 429 (attempt 1), backing off 2s
+nemotron transient error 429 (attempt 1), backing off 2s
+nemotron transient error 429 (attempt 2), backing off 4s
+nemotron transient error 429 (attempt 3), backing off 8s
+nemotron transient error 429 (attempt 1), backing off 2s
+HH-036 done (36/70)
+HH-038 done (37/70)
+HH-037 done (38/70)
+HH-039 done (39/70)
+HH-040 done (40/70)
+HH-041 done (41/70)
+nemotron transient error 429 (attempt 1), backing off 2s
+HH-042 done (42/70)
+HH-044 done (43/70)
+HH-043 done (44/70)
 HH-046 done (45/70)
 HH-047 done (46/70)
 nemotron transient error 429 (attempt 1), backing off 2s
-nemotron transient error 429 (attempt 2), backing off 4s
-HH-049 done (47/70)
-nemotron transient error 429 (attempt 1), backing off 2s
-nemotron transient error 503 (attempt 2), backing off 4s
-nemotron transient error 429 (attempt 3), backing off 8s
-HH-045 done (48/70)
+HH-045 done (47/70)
+HH-049 done (48/70)
+HH-048 done (49/70)
+HH-050 done (50/70)
 nemotron transient error 429 (attempt 1), backing off 2s
 nemotron transient error 429 (attempt 2), backing off 4s
-HH-050 done (49/70)
-HH-048 done (50/70)
 nemotron transient error 429 (attempt 1), backing off 2s
-nemotron transient error 429 (attempt 2), backing off 4s
+nemotron transient error 429 (attempt 1), backing off 2s
 HH-051 done (51/70)
-HH-053 done (52/70)
-HH-052 done (53/70)
+HH-052 done (52/70)
 nemotron transient error 429 (attempt 1), backing off 2s
+nemotron transient error 504 (attempt 3), backing off 8s
+nemotron transient error 504 (attempt 1), backing off 2s
+nemotron transient error 504 (attempt 4), backing off 16s
+HH-055 done (53/70)
 HH-054 done (54/70)
-nemotron transient error 429 (attempt 1), backing off 2s
 HH-056 done (55/70)
-HH-055 done (56/70)
+HH-053 done (56/70)
 HH-057 done (57/70)
 HH-058 done (58/70)
-nemotron transient error 429 (attempt 1), backing off 2s
-HH-061 done (59/70)
+HH-059 done (59/70)
 nemotron transient error 429 (attempt 1), backing off 2s
 nemotron transient error 429 (attempt 2), backing off 4s
-nemotron transient error 429 (attempt 3), backing off 8s
-nemotron transient error 429 (attempt 4), backing off 16s
-HH-059 done (60/70)
-HH-062 done (61/70)
-HH-063 done (62/70)
+HH-060 done (60/70)
+HH-061 done (61/70)
+HH-062 done (62/70)
+HH-063 done (63/70)
 nemotron transient error 429 (attempt 1), backing off 2s
 nemotron transient error 503 (attempt 2), backing off 4s
-nemotron transient error 504 (attempt 1), backing off 2s
-HH-065 done (63/70)
-nemotron transient error 429 (attempt 1), backing off 2s
-HH-064 done (64/70)
-nemotron transient error 429 (attempt 1), backing off 2s
+nemotron transient error 429 (attempt 3), backing off 8s
+nemotron transient error APIConnectionError (attempt 4), backing off 16s
+nemotron transient error APIConnectionError (attempt 1), backing off 2s
+nemotron transient error APIConnectionError (attempt 1), backing off 2s
 nemotron transient error 429 (attempt 2), backing off 4s
 nemotron transient error 429 (attempt 3), backing off 8s
-HH-060 done (65/70)
-HH-067 done (66/70)
-HH-066 done (67/70)
-HH-068 done (68/70)
-HH-069 done (69/70)
+HH-065 done (64/70)
+HH-064 done (65/70)
+HH-066 done (66/70)
+HH-067 done (67/70)
+HH-069 done (68/70)
+HH-068 done (69/70)
 HH-070 done (70/70)
 {
  "unclaimed": {
   "decisions": 280,
   "decidable": 248,
-  "accuracy_decidable": 0.9758,
+  "accuracy_decidable": 0.9839,
+  "coverage": 0.8714,
+  "selective_accuracy": 1.0,
   "wrong_yes": 0,
   "wrong_yes_rate": 0.0,
   "wrong_no": 0,
   "wrong_no_rate": 0.0,
-  "escalations": 38,
-  "escalation_precision": 0.8421,
+  "escalations": 36,
+  "escalation_precision": 0.8889,
   "escalation_recall": 1.0,
   "amount_accuracy": 1.0,
   "citation_validity": 1.0,
-  "latency_s_mean": 147.59,
-  "tokens_mean": 7249,
+  "latency_s_mean": 144.18,
+  "tokens_mean": 7241,
   "households": 70
  },
  "baseline": {
   "decisions": 280,
   "decidable": 248,
   "accuracy_decidable": 0.7944,
-  "wrong_yes": 24,
-  "wrong_yes_rate": 0.0857,
-  "wrong_no": 1,
-  "wrong_no_rate": 0.0036,
-  "escalations": 58,
-  "escalation_precision": 0.2931,
-  "escalation_recall": 0.5312,
-  "amount_accuracy": 0.7778,
-  "citation_validity": 0.9429,
-  "latency_s_mean": 139.65,
-  "tokens_mean": 7170,
+  "coverage": 0.7786,
+  "selective_accuracy": 0.9037,
+  "wrong_yes": 21,
+  "wrong_yes_rate": 0.075,
+  "wrong_no": 0,
+  "wrong_no_rate": 0.0,
+  "escalations": 62,
+  "escalation_precision": 0.3226,
+  "escalation_recall": 0.625,
+  "amount_accuracy": 0.7723,
+  "citation_validity": 0.9893,
+  "latency_s_mean": 154.62,
+  "tokens_mean": 7379,
   "households": 70
  },
  "deterministic": {
   "decisions": 280,
   "decidable": 248,
   "accuracy_decidable": 1.0,
+  "coverage": 0.8857,
+  "selective_accuracy": 1.0,
   "wrong_yes": 0,
   "wrong_yes_rate": 0.0,
   "wrong_no": 0,
@@ -147,7 +159,7 @@ HH-070 done (70/70)
   "escalation_recall": 1.0,
   "amount_accuracy": 1.0,
   "citation_validity": 1.0,
-  "latency_s_mean": 3.48,
+  "latency_s_mean": 3.37,
   "tokens_mean": 541,
   "households": 70
  }
