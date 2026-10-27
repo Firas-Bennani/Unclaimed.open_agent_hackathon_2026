@@ -15,6 +15,7 @@ import csv
 import json
 import sqlite3
 import sys
+import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
@@ -195,25 +196,40 @@ def main() -> None:
             row["unclaimed"] = run_unclaimed(hh, use_reasoning=True)
         if "baseline" in systems:
             row["baseline"] = run_baseline(hh, policy, clause_ids)
-        print(f"{hh['id']} done", flush=True)
+        with lock:
+            done.append(row)
+            write(done, partial=len(done) < len(hhs))
+        print(f"{hh['id']} done ({len(done)}/{len(hhs)})", flush=True)
         return row
 
+    lock = threading.Lock()
+    done: list[dict] = []
     t0 = time.time()
+
+    def write(rows: list[dict], partial: bool) -> dict:
+        rows = sorted(rows, key=lambda r: r["id"])
+        out = {
+            "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "partial": partial,
+            "n_households": len(rows),
+            "n_planned": len(hhs),
+            "benefits": BENEFITS,
+            "models": {"reasoning": settings.reasoning_model, "extraction": settings.extraction_model},
+            "ground_truth": "eval/reference.py on observable facts (plain Python from policy text) + hand-labelled escalations",
+            "wall_time_s": round(time.time() - t0, 1),
+            "summary": {s: metrics(rows, s) for s in systems},
+            "errors": {s: [r["id"] for r in rows if s in r and "error" in r[s]] for s in systems},
+            "rows": rows,
+        }
+        tmp = ROOT / "eval" / "results.json.tmp"
+        tmp.write_text(json.dumps(out, indent=1, default=str), encoding="utf-8")
+        tmp.replace(ROOT / "eval" / "results.json")
+        return out
+
     with ThreadPoolExecutor(max_workers=args.workers) as ex:
-        rows = list(ex.map(one, hhs))
-    summary = {s: metrics(rows, s) for s in systems}
-    out = {
-        "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "n_households": len(rows),
-        "benefits": BENEFITS,
-        "models": {"reasoning": settings.reasoning_model, "extraction": settings.extraction_model},
-        "ground_truth": "eval/reference.py on observable facts (plain Python from policy text) + hand-labelled escalations",
-        "wall_time_s": round(time.time() - t0, 1),
-        "summary": summary,
-        "errors": {s: [r["id"] for r in rows if s in r and "error" in r[s]] for s in systems},
-        "rows": rows,
-    }
-    (ROOT / "eval" / "results.json").write_text(json.dumps(out, indent=1, default=str), encoding="utf-8")
+        list(ex.map(one, hhs))
+    out = write(done, partial=False)
+    summary = out["summary"]
     write_eval_md(out)
     print(json.dumps(summary, indent=1))
 

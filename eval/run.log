@@ -1,56 +1,37 @@
 C:\Users\FIRAS\anaconda3\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
   from starlette.testclient import TestClient as TestClient  # noqa
-HH-002 done
-HH-006 done
-HH-001 done
-HH-005 done
-HH-007 done
-nemotron transient error 503 (attempt 1), backing off 2s
-HH-004 done
-HH-009 done
-nemotron transient error 500 (attempt 1), backing off 2s
-HH-008 done
-HH-011 done
-HH-010 done
-HH-003 done
-nemotron transient error 500 (attempt 1), backing off 2s
-HH-012 done
-HH-016 done
-HH-017 done
-nemotron transient error 504 (attempt 1), backing off 2s
-HH-014 done
-nemotron transient error 500 (attempt 1), backing off 2s
-HH-015 done
-HH-013 done
-HH-020 done
-HH-019 done
-nemotron transient error 503 (attempt 1), backing off 2s
-HH-021 done
-HH-022 done
-HH-018 done
-HH-024 done
-nemotron transient error 504 (attempt 1), backing off 2s
-HH-025 done
-HH-029 done
-HH-027 done
-HH-023 done
-HH-028 done
-HH-026 done
-HH-030 done
-HH-031 done
-HH-033 done
-HH-035 done
-HH-034 done
-HH-032 done
-nemotron transient error APIConnectionError (attempt 1), backing off 2s
-nemotron transient error APIConnectionError (attempt 1), backing off 2s
-nemotron transient error APIConnectionError (attempt 1), backing off 2s
-nemotron transient error APIConnectionError (attempt 1), backing off 2s
-nemotron transient error APIConnectionError (attempt 1), backing off 2s
-nemotron transient error APIConnectionError (attempt 1), backing off 2s
-nemotron transient error APIConnectionError (attempt 2), backing off 4s
-nemotron transient error APIConnectionError (attempt 2), backing off 4s
-nemotron transient error APIConnectionError (attempt 2), backing off 4s
-nemotron transient error APIConnectionError (attempt 2), backing off 4s
-nemotron transient error APIConnectionError (attempt 2), backing off 4s
-nemotron transient error APIConnectionError (attempt 2), backing off 4s
+HH-002 done (1/70)
+HH-005 done (2/70)
+HH-001 done (3/70)
+HH-006 done (4/70)
+HH-004 done (5/70)
+HH-003 done (6/70)
+HH-007 done (7/70)
+HH-008 done (8/70)
+HH-009 done (9/70)
+HH-010 done (10/70)
+HH-011 done (11/70)
+HH-012 done (12/70)
+HH-013 done (13/70)
+HH-014 done (14/70)
+HH-015 done (15/70)
+HH-018 done (16/70)
+HH-016 done (17/70)
+HH-017 done (18/70)
+HH-019 done (19/70)
+HH-020 done (20/70)
+HH-021 done (21/70)
+HH-022 done (22/70)
+HH-023 done (23/70)
+HH-024 done (24/70)
+HH-025 done (25/70)
+HH-026 done (26/70)
+HH-027 done (27/70)
+HH-028 done (28/70)
+HH-029 done (29/70)
+HH-030 done (30/70)
+HH-031 done (31/70)
+HH-032 done (32/70)
+HH-033 done (33/70)
+HH-034 done (34/70)
+HH-035 done (35/70)
