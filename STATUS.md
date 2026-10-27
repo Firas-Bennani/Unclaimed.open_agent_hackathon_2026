@@ -15,7 +15,7 @@ _Last update: 2026-10-27 12:55 UTC · paused at Firas's request_
 
 ## Where I stopped
 - **Evaluation run in progress** (`python eval/run.py --workers 6`, LLM_CONCURRENCY=6, log in `eval/run.log`): 30/70 households done at 12:54 UTC, about 1 per minute. When it finishes it writes `eval/results.json` and `EVAL.md`.
-  - It keeps running in the background. If it has been stopped, rerun the same command; every completed Nemotron call is cached, so it resumes cheaply.
+  - **Update:** Claude Code stopped the run because the system was critically low on memory while the session was idle. No results.json was written yet. Every completed Nemotron call is cached, so rerunning `LLM_CONCURRENCY=6 python eval/run.py --workers 6` resumes from about 30/70. Not restarted: waiting for Firas.
 
 ## Next (in order)
 1. Once the eval finishes: read `EVAL.md`, fill `<!-- EVAL -->` in README and `<!-- EVAL_HEADLINE -->` in docs/SUBMISSION.md with the real numbers, commit.

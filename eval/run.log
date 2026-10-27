@@ -37,3 +37,20 @@ HH-023 done
 HH-028 done
 HH-026 done
 HH-030 done
+HH-031 done
+HH-033 done
+HH-035 done
+HH-034 done
+HH-032 done
+nemotron transient error APIConnectionError (attempt 1), backing off 2s
+nemotron transient error APIConnectionError (attempt 1), backing off 2s
+nemotron transient error APIConnectionError (attempt 1), backing off 2s
+nemotron transient error APIConnectionError (attempt 1), backing off 2s
+nemotron transient error APIConnectionError (attempt 1), backing off 2s
+nemotron transient error APIConnectionError (attempt 1), backing off 2s
+nemotron transient error APIConnectionError (attempt 2), backing off 4s
+nemotron transient error APIConnectionError (attempt 2), backing off 4s
+nemotron transient error APIConnectionError (attempt 2), backing off 4s
+nemotron transient error APIConnectionError (attempt 2), backing off 4s
+nemotron transient error APIConnectionError (attempt 2), backing off 4s
+nemotron transient error APIConnectionError (attempt 2), backing off 4s
