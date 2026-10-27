@@ -37,3 +37,5 @@ if __name__ == "__main__":
     p = r["patch"]
     print("patch:", p["status"], p.get("reason"), p.get("gate"), p.get("ops"))
     print("changes:", r["changes"])
+    r = c.post(f"/api/households/{MARIA}/assess").json()  # Maria under the patched pack
+    print("Maria after patch:", {d["benefit"]: (d["status"], d["amount_monthly"]) for d in r["decisions"]})

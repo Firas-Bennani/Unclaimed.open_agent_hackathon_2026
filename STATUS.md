@@ -1,6 +1,6 @@
 # STATUS — Unclaimed
 
-_Last update: 2026-10-27 12:10 UTC_
+_Last update: 2026-10-27 12:35 UTC_
 
 ## Done
 - Repo, .gitignore (.env), NEEDS_FIRAS.md, DECISIONS.md
@@ -10,9 +10,13 @@ _Last update: 2026-10-27 12:10 UTC_
 - Independent reference implementation + hand labels (1 disagreement found and resolved)
 - Rule compiler: AA and CTR compiled by Nemotron, both pass the examples
 
+- All 4 rules compiled by Nemotron (3 needed one repair; PC repaired from a failing hand-written example)
+- 40 tests green; Maria verified live (✅ PC £187.85 · ⚠️ AA · ✅ CTR £95.33 · ❌ WHD, both lanes agree)
+- Frontend complete (dashboard, household, trace, evaluation, rules & learning)
+- README, DEMO_SCRIPT, SUBMISSION drafted (numbers pending eval)
+
 ## In progress
-- Compiling Pension Credit (with example failures fed back into the repair loop) and Warm Home Discount
-- Frontend (forked agent)
+- Full evaluation run (70 households × Unclaimed / baseline / deterministic) — restarted with 420s timeout
 
 ## Next
 - Tests green → commit → eval run (Unclaimed / baseline / deterministic-only) → EVAL.md

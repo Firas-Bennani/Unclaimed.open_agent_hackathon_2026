@@ -3,6 +3,7 @@ schema validation + repair, and a record/replay cache keyed by prompt hash."""
 from __future__ import annotations
 
 import hashlib
+import os
 import json
 import logging
 import re
@@ -44,7 +45,7 @@ def _get_client():
     if _client is None:
         from openai import OpenAI
 
-        _client = OpenAI(base_url=settings.nvidia_base_url, api_key=settings.nvidia_api_key, timeout=180, max_retries=0)
+        _client = OpenAI(base_url=settings.nvidia_base_url, api_key=settings.nvidia_api_key, timeout=float(os.environ.get("LLM_TIMEOUT_S", "420")), max_retries=0)
     return _client
 
 
