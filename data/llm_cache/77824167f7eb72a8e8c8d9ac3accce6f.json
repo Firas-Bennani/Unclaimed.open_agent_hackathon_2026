@@ -1,0 +1,9 @@
+{
+ "content": "{\n  \"facts\": [\n    {\n      \"field\": \"needs_care_help\",\n      \"value\": true,\n      \"quote\": \"Stanley has needed help with washing, dressing and medication both during the day and at night for about 9 months since a health decline.\",\n      \"approximate\": true\n    },\n    {\n      \"field\": \"care_need_months\",\n      \"value\": 9,\n      \"quote\": \"for about 9 months since a health decline.\",\n      \"approximate\": true\n    },\n    {\n      \"field\": \"care_day_and_night\",\n      \"value\": true,\n      \"quote\": \"help with washing, dressing and medication both during the day and at night\",\n      \"approximate\": false\n    },\n    {\n      \"field\": \"electricity_bill_in_name\",\n      \"value\": true,\n      \"quote\": \"The electricity account is in their own name.\",\n      \"approximate\": false\n    },\n    {\n      \"field\": \"savings\",\n      \"value\": 1614,\n      \"quote\": \"Savings of about \u00a31,614 mentioned.\",\n      \"approximate\": true\n    },\n    {\n      \"field\": \"has_partner\",\n      \"value\": false,\n      \"quote\": \"Stanley lives alone.\",\n      \"approximate\": false\n    }\n  ]\n}",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "prompt_tokens": 354,
+ "completion_tokens": 297,
+ "latency_s": 3.099,
+ "model": "nvidia/nemotron-3.5-lightning-30b-a3b"
+}

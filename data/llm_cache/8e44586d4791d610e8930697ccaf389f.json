@@ -1,0 +1,9 @@
+{
+ "content": "{\n  \"facts\": [\n    {\n      \"field\": \"needs_care_help\",\n      \"value\": true,\n      \"quote\": \"Bernard has needed help with washing, dressing and medication both during the day and at night for about 24 months since a health decline.\",\n      \"approximate\": true\n    },\n    {\n      \"field\": \"care_need_months\",\n      \"value\": 24,\n      \"quote\": \"for about 24 months since a health decline.\",\n      \"approximate\": true\n    },\n    {\n      \"field\": \"care_day_and_night\",\n      \"value\": true,\n      \"quote\": \"help with washing, dressing and medication both during the day and at night\",\n      \"approximate\": false\n    },\n    {\n      \"field\": \"savings\",\n      \"value\": 2752,\n      \"quote\": \"Savings of about \u00a32,752 mentioned.\",\n      \"approximate\": true\n    }\n  ]\n}",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "prompt_tokens": 346,
+ "completion_tokens": 219,
+ "latency_s": 3.15,
+ "model": "nvidia/nemotron-3.5-lightning-30b-a3b"
+}

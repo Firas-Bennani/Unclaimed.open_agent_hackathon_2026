@@ -1,0 +1,9 @@
+{
+ "content": "{\n  \"facts\": [\n    {\n      \"field\": \"has_partner\",\n      \"value\": true,\n      \"quote\": \"Lives with partner Sid.\",\n      \"approximate\": false\n    }\n  ]\n}",
+ "reasoning": "",
+ "finish_reason": "stop",
+ "prompt_tokens": 319,
+ "completion_tokens": 49,
+ "latency_s": 0.862,
+ "model": "nvidia/nemotron-3.5-lightning-30b-a3b"
+}

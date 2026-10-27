@@ -257,6 +257,8 @@ def _operand(v, env: Env):
         return env.values.get(v["field"]), v["field"]
     if isinstance(v, dict) and set(v) == {"derived"}:
         return env.derived.get(v["derived"]), v["derived"]
+    if isinstance(v, dict) and set(v) == {"const"}:
+        return v["const"], None
     if isinstance(v, dict):  # an arithmetic expression as the comparison value
         return eval_expr(Expr.model_validate(v), env), "expression"
     return v, None
